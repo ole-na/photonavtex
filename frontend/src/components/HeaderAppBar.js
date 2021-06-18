@@ -101,6 +101,7 @@ export default function HeaderAppBar(props) {
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
+
             <Drawer className={classes.headerMenu}
                     open={open}
                     onClose={toggleDrawer(false)}
@@ -123,7 +124,6 @@ export default function HeaderAppBar(props) {
                         <HeaderMenuItem type="about" text="About me" />
                     </MenuList>
                 </section>
-
             </Drawer>
 
         </>
