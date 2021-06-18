@@ -51,9 +51,7 @@ const AutoRotatingCarouselModal = ({ handleOpen, setHandleOpen, isMobile }) => {
 
 export default function AutoRotatingCarouselComponent() {
     const [handleOpen, setHandleOpen] = useState({ open: false });
-    const handleClick = () => {
-        setHandleOpen({ open: true });
-    };
+    const handleClick = () => setHandleOpen({ open: true })
     const matches = useMediaQuery("(max-width:600px)");
     return (
         <>
@@ -66,4 +64,3 @@ export default function AutoRotatingCarouselComponent() {
         </>
     );
 };
-
