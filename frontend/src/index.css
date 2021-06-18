@@ -29,10 +29,6 @@ code {
   src: local('TouchOfNature'), url(./fonts/Toucon__.ttf) format('truetype');
 }
 
-/*@font-face {
-  font-family: 'HostilGradient';
-  src: local('HostilGradient'), url(./fonts/Hostil_Gradient.ttf) format('truetype');
-}*/
 
 @font-face {
   font-family: 'Gravitate';
