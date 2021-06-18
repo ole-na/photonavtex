@@ -86,8 +86,6 @@ export default function HeaderAppBar(props) {
                 <AppBar position="fixed" className={classes.appBar}>
                     <Toolbar>
                         <Link to="/home">
-                            {/*<Typography variant="h1" fontSize={2} className={classes.title1}>
-                                PhotoNavTex
                             </Typography>*/}
                             <img src={logo} className="app-logo" alt="logo" />
                         </Link>
