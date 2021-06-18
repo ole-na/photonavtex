@@ -35,16 +35,16 @@ const useStyles = makeStyles({
 });
 
 function LabelBottomNavigation() {
-    const [value, setValue] = useState("");
+    const [page, setPage] = useState("");
     const history = useHistory();
-    const handleChange = (event, newValue) => {
-        history.push(newValue);
-        setValue(newValue);
+    const handleChange = (event, newPage) => {
+        history.push(newPage);
+        setPage(newPage);
     };
 
     return (
         <BottomNavigation
-            value={value}
+            value={page}
             onChange={handleChange}
             showLabels
         >
