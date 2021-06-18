@@ -15,14 +15,6 @@ code {
 @font-face {
   font-family: 'Prisma';
   src: local('Prisma'), url(./fonts/Prisma.otf) format('opentype');
-  /* other formats include: 'woff2', 'truetype, 'opentype',
-                            'embedded-opentype', and 'svg' */
-}
-
-/*@font-face {
-  font-family: 'Prism';
-  src: local('Prism'), url(./fonts/Prism-Regular.otf) format('opentype');
-}*/
 
 @font-face {
   font-family: 'TouchOfNature';
