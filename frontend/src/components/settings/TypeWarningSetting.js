@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     formControl: {
-        // margin: theme.spacing(3),
         border: '1px solid #000',
         borderRadius: '4px',
         padding: '20px',
