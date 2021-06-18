@@ -86,7 +86,6 @@ export default function HeaderAppBar(props) {
                 <AppBar position="fixed" className={classes.appBar}>
                     <Toolbar>
                         <Link to="/home">
-                            </Typography>*/}
                             <img src={logo} className="app-logo" alt="logo" />
                         </Link>
                         <IconButton
