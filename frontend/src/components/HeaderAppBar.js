@@ -86,7 +86,6 @@ export default function HeaderAppBar(props) {
                 <AppBar position="fixed" className={classes.appBar}>
                     <Toolbar>
                         <Link to="/home">
-                            </Typography>*/}
                             <img src={logo} className="app-logo" alt="logo" />
                         </Link>
                         <IconButton
@@ -99,6 +98,7 @@ export default function HeaderAppBar(props) {
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
+
             <Drawer className={classes.headerMenu}
                     open={open}
                     onClose={toggleDrawer(false)}
