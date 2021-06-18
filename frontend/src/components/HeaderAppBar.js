@@ -121,7 +121,6 @@ export default function HeaderAppBar(props) {
                         <HeaderMenuItem type="about" text="About me" />
                     </MenuList>
                 </section>
-
             </Drawer>
 
         </>

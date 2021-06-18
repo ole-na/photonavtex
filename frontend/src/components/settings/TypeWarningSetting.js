@@ -34,6 +34,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const checkBoxStyles = theme => ({
+    root: {
+        '&$checked': {
+            color: blue[700],
+        },
+    },
+    checked: {},
+})
+
+const CustomCheckbox = withStyles(checkBoxStyles)(Checkbox);
+
 export default function TypeWarningSetting() {
     const classes = useStyles();
     const [state, setState] = React.useState({
@@ -47,17 +58,6 @@ export default function TypeWarningSetting() {
 
     const { warningA, warningD } = state;
     const error = [warningA, warningD].filter((v) => v).length === 0;
-
-    const checkBoxStyles = theme => ({
-        root: {
-            '&$checked': {
-                color: blue[700],
-            },
-        },
-        checked: {},
-    })
-
-    const CustomCheckbox = withStyles(checkBoxStyles)(Checkbox);
 
     return (
         <div className={classes.root}>
