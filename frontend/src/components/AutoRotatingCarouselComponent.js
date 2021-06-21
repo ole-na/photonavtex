@@ -18,7 +18,7 @@ const AutoRotatingCarouselModal = ({ handleOpen, setHandleOpen, isMobile }) => {
         >
             <Slide
                   media={
-                    <img src="../images/cat_photo.png" />
+                    <img src="../images/cat_photo.png" alt="" />
                   }
                   mediaBackgroundStyle={{ backgroundColor: yellow[400] }}
                   style={{ backgroundColor: yellow[600] }}
@@ -27,7 +27,7 @@ const AutoRotatingCarouselModal = ({ handleOpen, setHandleOpen, isMobile }) => {
               />
             <Slide
               media={
-                <img src="../images/cat_tea.png" />
+                <img src="../images/cat_tea.png" alt="" />
               }
               mediaBackgroundStyle={{ backgroundColor: blue[400] }}
               style={{ backgroundColor: blue[600] }}
@@ -36,12 +36,12 @@ const AutoRotatingCarouselModal = ({ handleOpen, setHandleOpen, isMobile }) => {
             />
             <Slide
               media={
-                <img src="../images/cat_map.png" />
+                <img src="../images/cat_map.png" alt="" />
               }
               mediaBackgroundStyle={{ backgroundColor: cyan[400] }}
               style={{ backgroundColor: cyan[600] }}
-              title="#3 Voilà: GoogleMaps"
-              subtitle="You could see now the warning´s position on GoogleMaps"
+              title="#3 Voilà: OpenSeaMap"
+              subtitle="You could see now the warning´s position on OpenSeaMap incl. OpenStreetMap"
             />
         </AutoRotatingCarousel>
    );
