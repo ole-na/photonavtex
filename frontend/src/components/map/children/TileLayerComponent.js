@@ -6,7 +6,7 @@ const { BaseLayer, Overlay } = LayersControl;
 export default function TileLayerComponent() {
     return (<>
         {mapConfig.baseMaps.map(tileLayer =>
-            tileLayer.display === "true" &&
+            tileLayer.display  &&
             <BaseLayer key={tileLayer.name} checked={tileLayer.checked} name={tileLayer.name}>
                 <TileLayer opacity={tileLayer.opacity}
                            attribution={tileLayer.attribution}
@@ -14,7 +14,7 @@ export default function TileLayerComponent() {
             </BaseLayer>
         )}
         {mapConfig.overlayMaps.map(tileLayer =>
-            tileLayer.display === "true" &&
+            tileLayer.display &&
             <Overlay key={tileLayer.name} checked={tileLayer.checked} name={tileLayer.name}>
                 <TileLayer opacity={tileLayer.opacity}
                            attribution={tileLayer.attribution}
