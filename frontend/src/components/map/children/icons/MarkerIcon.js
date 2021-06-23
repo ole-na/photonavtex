@@ -6,7 +6,9 @@ import TrackChangesIcon from '@material-ui/icons/TrackChanges';
 import DirectionsBoatIcon from '@material-ui/icons/DirectionsBoat';
 
 export default function MarkerIcon(type) {
+    // TODO: should be fixed
     const materialUiIcon = (type === "warning") ? <TrackChangesIcon /> : <DirectionsBoatIcon />;
+    console.log("Material-Ui-Icon", materialUiIcon);
 
     const customIcon = new Leaflet.divIcon({
         iconSize: [30, 42],
