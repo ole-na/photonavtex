@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Marker, Popup} from "react-leaflet";
 import geolocationCurrentPosition from "../hooks/geolocationCurrentPosition";
 import convertMetersPerSecondToKnots from "../hooks/geolocationConvertSpeed";
-import MarkerIcon from "./icons/MarkerIcon";
+import MarkerIcon from "../icons/MarkerIcon";
 
 export default function CurrentMarker() {
     const [state, setState] = useState({

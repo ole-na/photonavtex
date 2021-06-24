@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {CircleMarker, Marker, Popup} from "react-leaflet";
 import geolocationDistance from "../../hooks/geolocationDistance";
 import geolocationCurrentPosition from "../../hooks/geolocationCurrentPosition";
-import MarkerIcon from "../icons/MarkerIcon";
+import MarkerIcon from "../../icons/MarkerIcon";
 
 export default function WarningCircle({warning}) {
 

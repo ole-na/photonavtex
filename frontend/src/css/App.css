@@ -75,14 +75,15 @@
     opacity: 0.7;
 }
 
-.map-legend i.lime {
+.map-legend i.route {
     background-color: lime;
 }
 
-.map-legend i.red {
+.map-legend i.warning {
     background-color: red;
 }
 
-.map-legend i.blue {
-    background-color: blue;
+.map-legend i.current-position {
+    background-image: url("../components/map/icons/directions_boat_blue.svg");
+    background-size: 18px;
 }
