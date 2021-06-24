@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import "leaflet/dist/leaflet.css";
 import {MapContainer, LayersControl, TileLayer, useMap} from 'react-leaflet';
+import {NmScale} from "@marfle/react-leaflet-nmscale";
+
 import TileLayerComponent from "./children/TileLayerComponent";
 import WarningVectorLayers from "./children/warnings/WarningVectorLayers";
 import RouteComponent from "./children/RouteComponent";
@@ -29,6 +31,8 @@ export default function  MapContainerComponent() {
 
                 <LocateControl />
                 <Legend map={map} />
+                <NmScale />
+
                 <WarningVectorLayers />
                 <RouteComponent />
             </MapContainer>
