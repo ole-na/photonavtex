@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Container from '@material-ui/core/Container';
 
-import './App.css';
+import './css/App.css';
 import {ThemeProvider as MaterialThemeProvider} from "@material-ui/styles";
 import blue from '@material-ui/core/colors/blue';
 import cyan from '@material-ui/core/colors/cyan';
