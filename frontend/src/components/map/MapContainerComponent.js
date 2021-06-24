@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import "leaflet/dist/leaflet.css";
-import {MapContainer, LayersControl, TileLayer, useMap} from 'react-leaflet';
+import {MapContainer, LayersControl} from 'react-leaflet';
 import {NmScale} from "@marfle/react-leaflet-nmscale";
 
 import TileLayerComponent from "./children/TileLayerComponent";
 import WarningVectorLayers from "./children/warnings/WarningVectorLayers";
 import RouteComponent from "./children/RouteComponent";
 import Legend from "./Legend";
-import LocateControl from './LocateControl';
+import LocateControl from './controlElements/LocateControl';
 import {mapConfig} from "./mapConfig";
 
 export default function  MapContainerComponent() {

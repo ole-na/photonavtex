@@ -25,25 +25,19 @@
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "axios": "^0.21.1",
     "classnames": "^2.2.6",
-    "clsx": "^1.1.1",
+    "font-awesome": "^4.7.0",
     "leaflet": "^1.7.1",
+    "leaflet-measure": "^3.1.0",
+    "leaflet.locatecontrol": "^0.73.0",
     "material-auto-rotating-carousel": "^3.0.2",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
-    "react-images-upload": "^1.2.8",
-    "react-images-uploading": "^3.1.2",
-    "react-query": "^3.18.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-leaflet": "^3.0.5",
     "react-leaflet-drift-marker": "^3.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
-    "react-spinners": "^0.11.0",
     "react-swipeable-views": "^0.13.9",
-    "react-swipeable-views-utils": "^0.13.9",
     "react-swipeable-views-utils": "^0.13.9",
     "semantic-ui-react": "^2.0.3",
     "styled-components": "^5.3.0",
@@ -70,8 +64,6 @@
   "proxy": "http://localhost:8080",
   "devDependencies": {
     "prettier": "2.3.1",
-    "prop-types": "^15.7.2",
-    "tesseract.js": "^2.1.4",
-    "vite": "^2.3.8"
+    "prop-types": "^15.7.2"
   }
 }
