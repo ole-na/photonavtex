@@ -6,9 +6,12 @@ import {NmScale} from "@marfle/react-leaflet-nmscale";
 import TileLayerComponent from "./children/TileLayerComponent";
 import WarningVectorLayers from "./children/warnings/WarningVectorLayers";
 import RouteComponent from "./children/RouteComponent";
-import Legend from "./Legend";
 import LocateControl from './controlElements/LocateControl';
 import {mapConfig} from "./mapConfig";
+import MapSidebarComponent from "./mapSidebar/MapSidebarComponent";
+import NauticalRulerMeasureComponent from "./controlElements/NauticalRulerMeasureComponent";
+
+import "../../css/customLeaflet.css";
 
 export default function  MapContainerComponent() {
     const [map, setMap] = useState(null);
@@ -24,13 +27,15 @@ export default function  MapContainerComponent() {
                           markerZoomAnimation={true}
                           whenCreated={map => setMap(map)}
             >
+                <MapSidebarComponent />
 
-                <LayersControl position="topright">
+                <LayersControl position="bottomright">
                     <TileLayerComponent />
                 </LayersControl>
 
                 <LocateControl />
-                <Legend map={map} />
+
+                <NauticalRulerMeasureComponent />
                 <NmScale />
 
                 <WarningVectorLayers />
