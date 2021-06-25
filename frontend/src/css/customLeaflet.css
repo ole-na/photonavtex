@@ -1,0 +1,21 @@
+/* border color for react-leaflet-nmscale input field: use the same color as for another control elements */
+.leaflet-control-scale-line {
+    border-color: rgba(0,0,0,0.2);
+}
+
+/* leaflet-measure */
+.leaflet-control-measure a.start,
+.leaflet-control-measure a.cancel,
+.leaflet-control-measure a.finish {
+    color: #1976d2;
+}
+
+/* full width for leaflet-sidebar-v2 */
+#mapSidebar.leaflet-sidebar {
+    width: 100%;
+    max-width: 100%;
+}
+
+#mapSidebar.leaflet-sidebar.collapsed {
+    width: 40px;
+}
