@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
 import {useMap} from "react-leaflet";
+import L from "leaflet";
+import iconBoat from "../icons/directions_boat_blue.svg";
+
 import Locate from "leaflet.locatecontrol";
 import "font-awesome/css/font-awesome.min.css";
-import "../../../css/leaflet-locate.css";
-import iconBoat from "../icons/directions_boat_blue.svg";
-import Leaflet from "leaflet";
+import "../externalPlugins/locateControl/leaflet-locate.css";
 
 export default function LocateControl() {
     const map = useMap();
@@ -18,13 +19,13 @@ export default function LocateControl() {
 
         };
 
-        Leaflet.control.locate({
+        L.control.locate({
             strings: {
                 title: 'Locate me!'
             },
-            markerClass: Leaflet.marker,
+            markerClass: L.marker,
             markerStyle: {
-                icon: Leaflet.icon( customIcon )
+                icon: L.icon( customIcon )
             }
         }).addTo(map);
 
