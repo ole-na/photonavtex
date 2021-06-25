@@ -1,21 +1,19 @@
 import React from "react";
-import Leaflet from "leaflet";
+import L from "leaflet";
 import ReactDOMServer from "react-dom/server";
 
 import TrackChangesIcon from '@material-ui/icons/TrackChanges';
-import DirectionsBoatIcon from '@material-ui/icons/DirectionsBoat';
+import NewReleasesIcon from '@material-ui/icons/NewReleases';
 
 export default function MarkerIcon(type) {
-    // TODO: should be fixed
-    const materialUiIcon = (type === "warning") ? <TrackChangesIcon /> : <DirectionsBoatIcon />;
-    console.log("Material-Ui-Icon", materialUiIcon);
+    const materialUiIcon = (type === "warning") ? <TrackChangesIcon /> : <NewReleasesIcon />;
 
-    const customIcon = new Leaflet.divIcon({
+    const customIcon = new L.divIcon({
         iconSize: [30, 42],
         iconAnchor: [15, 42],
         className: "custom-marker-icon",
         html: "<div style='background-color:red;' class='marker-pin'></div>" +
-            ReactDOMServer.renderToString(<TrackChangesIcon />)
+            ReactDOMServer.renderToString(materialUiIcon)
     });
 
     return customIcon;
