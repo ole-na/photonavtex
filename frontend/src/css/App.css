@@ -59,31 +59,22 @@
     top: 9px;
 }
 
-.map-legend {
-    color: #555;
-    padding: 6px;
-    background: white;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
 
 .map-legend i {
     width: 18px;
     height: 18px;
-    float: left;
-    margin-right: 6px;
     opacity: 0.7;
 }
 
-.map-legend i.route {
+.map-legend .icon-route {
     background-color: lime;
 }
 
-.map-legend i.warning {
+.map-legend .icon-warning {
     background-color: red;
 }
 
-.map-legend i.current-position {
+.map-legend .icon-current-position {
     background-image: url("../components/map/icons/directions_boat_blue.svg");
     background-size: 18px;
 }
