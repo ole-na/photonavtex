@@ -24,7 +24,7 @@
  * @param {number} lon2: current position's longitude
  * @returns {number} spherical distance (shortest distance between two points) in nautical miles
  */
-export default function geolocationDistance(lat1, lon1, lat2, lon2) {
+export default function calculateDistance(lat1, lon1, lat2, lon2) {
     const unit = "N";
     if ((lat1 === lat2) && (lon1 === lon2)) {
         return 0;

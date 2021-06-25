@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {CircleMarker, Marker, Popup} from "react-leaflet";
-import geolocationDistance from "../../hooks/geolocationDistance";
+import calculateDistance from "../../externalPlugins/calculateDistance";
 import geolocationCurrentPosition from "../../hooks/geolocationCurrentPosition";
 import MarkerIcon from "../../icons/MarkerIcon";
 
@@ -23,7 +23,7 @@ export default function WarningCircle({warning}) {
     const distance = (currentState && currentState.hasLocation && currentState.coords && currentState.coords.speed) ? (
         <p>
             Distance from current position: {
-                geolocationDistance(
+                calculateDistance(
                     warning.lat,
                     warning.long,
                     currentState.coords.latitude,
