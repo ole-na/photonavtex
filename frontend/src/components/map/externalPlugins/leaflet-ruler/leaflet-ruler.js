@@ -1,5 +1,5 @@
 import L from "leaflet";
-import calculateDistance from "../calculateDistance";
+import calculateDistance from "../../../../services/calculateDistance";
 
 /*
 * Original source code: https://github.com/gokertanrisever/leaflet-ruler
@@ -125,7 +125,7 @@ import calculateDistance from "../calculateDistance";
                 this._addedLength = this._result.Distance + this._totalLength;
                 L.polyline([this._clickedLatLong, this._movingLatLong], this.options.lineStyle).addTo(this._tempLine);
                 if (this._clickCount > 1){
-                    text = this._addedLength.toFixed(this.options.lengthUnit.decimal) + '&nbsp;' +  this.options.lengthUnit.display + '<br><div class="plus-length">(+' + this._result.Distance.toFixed(this.options.lengthUnit.decimal) + ')</div>';
+                    text = this._addedLength.toFixed(this.options.lengthUnit.decimal) + '&nbsp;' +  this.options.lengthUnit.display + '<br><div className="plus-length">(+' + this._result.Distance.toFixed(this.options.lengthUnit.decimal) + ')</div>';
                 }
                 else {
                     text = this._result.Distance.toFixed(this.options.lengthUnit.decimal) + '&nbsp;' +  this.options.lengthUnit.display;
