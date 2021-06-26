@@ -1,16 +1,14 @@
 import React from "react";
-import {Polygon, Popup} from "react-leaflet";
+import {Polygon} from "react-leaflet";
+import WarningPopup from "./WarningPopup";
 
-export default function WarningPolygon({warning}) {
-    console.log("WarningData:", warning);
+export default function WarningPolygon(props) {
+    const warning = props.warning;
     const colorOptions = { color: 'red' };
-    const coords = warning.coords;
 
-    return (coords &&
-        <Polygon pathOptions={colorOptions} positions={coords}>
-            <Popup>
-                <h3>NavTex Polygon</h3>
-            </Popup>
+    return (warning.coords &&
+        <Polygon pathOptions={colorOptions} positions={warning.coords}>
+            <WarningPopup warning={warning} state={props.state} />
         </Polygon>
-    );
+    )
 }
