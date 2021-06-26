@@ -5,6 +5,7 @@
  * @throws {InvalidArgumentException}
  */
 export default function convertMetersPerSecondToKnots(speed) {
+    console.log("hier");
     try {
         switch (speed) {
             case "":

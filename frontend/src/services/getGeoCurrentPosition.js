@@ -62,7 +62,7 @@ function onGeolocationExist() {
     });
 }
 
-export default function geolocationCurrentPosition() {
+export default function getGeoCurrentPosition() {
     if(!navigator.geolocation) {
         const errorText = "Geolocation is NOT supported by this browser";
         error(errorText);
