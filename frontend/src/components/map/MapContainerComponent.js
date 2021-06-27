@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import "leaflet/dist/leaflet.css";
 import {MapContainer, LayersControl} from 'react-leaflet';
 import {NmScale} from "@marfle/react-leaflet-nmscale";
