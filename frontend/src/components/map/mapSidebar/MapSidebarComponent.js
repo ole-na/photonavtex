@@ -28,7 +28,7 @@ export default function MapSidebarComponent() {
     }, []);
 
     return (
-        <div id="mapSidebar" class="leaflet-sidebar collapsed">
+        <div id="mapSidebar" className="leaflet-sidebar collapsed">
             <div className="leaflet-sidebar-tabs">
                 <ul role="tablist">
                     <li><a href="#mapSidebarLayers" role="tab"><i className="fa fa-map"></i></a></li>
