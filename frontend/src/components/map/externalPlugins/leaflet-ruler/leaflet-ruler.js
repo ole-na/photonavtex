@@ -15,7 +15,6 @@ import calculateDistance from "../../../../services/calculateDistance";
 *
 */
 (function(factory, window){
-    "use strict";
     if (typeof exports === 'object') {
         module.exports = factory(require('leaflet'));
     }
@@ -23,7 +22,6 @@ import calculateDistance from "../../../../services/calculateDistance";
         window.L.Ruler = factory(L);
     }
 }(function (L) {
-    "use strict";
     L.Control.Ruler = L.Control.extend({
         options: {
             position: 'bottomleft',
