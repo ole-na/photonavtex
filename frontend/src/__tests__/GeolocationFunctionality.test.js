@@ -25,19 +25,16 @@ test('should convert [m/s] to to knots(nautical miles per hour) [kn] if speed is
   expect(kn3).toBe(mps3 * approximately);
 });
 
-test('convert from [m/s] to knots(nautical miles per hour): should return error message if no speed as parameter is provided', () => {
+test('convert from [m/s] to knots(nautical miles per hour): should return null if no speed as parameter is provided', () => {
   // WHEN
   const result = convertMetersPerSecondToKnots();
 
   // THEN
-  // expect(result).toThrow("Speed is empty");
   expect(result).toBe(null);
 });
 
-test('convert from [m/s] to knots(nautical miles per hour): should return error message if speed is not a number', () => {
+test('convert from [m/s] to knots(nautical miles per hour): should return null if speed is not a number', () => {
   // GIVEN
-  const expectedError1 = "Speed is not a number";
-  const expectedError2 = "Speed is null if the implementation is not able to measure it";
   const param1 = "aaa";
   const param2 = NaN;
   const param3 = null;
@@ -50,10 +47,6 @@ test('convert from [m/s] to knots(nautical miles per hour): should return error 
   const result4 = convertMetersPerSecondToKnots(param4);
 
   // THEN
-  // expect(result1).toThrow(expectedError1);
-  // expect(result2).toThrow(expectedError1);
-  // expect(result3).toThrow(expectedError2);
-  // expect(result4).toThrow(expectedError2);
   expect(result1).toBe(null);
   expect(result2).toBe(null);
   expect(result3).toBe(null);
