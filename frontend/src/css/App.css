@@ -12,7 +12,8 @@
 }
 
 .app-content-container {
-  margin-top: 5em;
+    margin-top: 5em;
+    margin-bottom: 7em;
 }
 
 #map {
