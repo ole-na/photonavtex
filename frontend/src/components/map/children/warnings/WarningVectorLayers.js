@@ -107,13 +107,13 @@ export default function WarningVectorLayers() {
     return warnings.map((warning) => {
         switch (warning.type) {
             case 'point':
-                return <WarningPoint key="warning_{warning.id}" warning={warning} state="warning" />
+                return <WarningPoint key={warning.id} warning={warning} state="warning" />
             case 'line':
-                return <WarningLine key="warning_{warning.id}" warning={warning} state="warning" />
+                return <WarningLine key={warning.id} warning={warning} state="warning" />
             case 'polygon':
-                return <WarningPolygon key="warning_{warning.id}" warning={warning} state="warning" />
+                return <WarningPolygon key={warning.id} warning={warning} state="warning" />
             default:
-                return <WarningError key="warning_{warning.id}" warning={warning} state="warning" />
+                return <WarningError key={warning.id} warning={warning} state="warning" />
         }
     })
 
