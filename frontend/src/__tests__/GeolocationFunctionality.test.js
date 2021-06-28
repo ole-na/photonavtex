@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
-import convertMetersPerSecondToKnots from "../components/map/hooks/geolocationConvertSpeed";
+import {render} from '@testing-library/react'
+import convertMetersPerSecondToKnots from "../services/convertMetersPerSecondToKnots";
 
 test('should convert [m/s] to to knots(nautical miles per hour) [kn] if speed is provided ', () => {
   // GIVEN
@@ -7,7 +8,6 @@ test('should convert [m/s] to to knots(nautical miles per hour) [kn] if speed is
   const mps2 = 1;
   const mps3 = 3.999;
   const approximately = 1.9438;
-
   // WHEN
   const kn1 = convertMetersPerSecondToKnots(mps1);
   const kn2 = convertMetersPerSecondToKnots(mps2);
