@@ -6,6 +6,12 @@ import Divider from "@material-ui/core/Divider";
 import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
+const style = {
+    zIndex: 3000,
+    position: 'fixed',
+    inset: '0px',
+};
+
 export default function WarningError(props) {
     const warning = props.warning;
 
@@ -17,6 +23,7 @@ export default function WarningError(props) {
 
     return (
         <Dialog id="mapWarningError"
+                style={style}
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
