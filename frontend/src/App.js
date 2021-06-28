@@ -21,18 +21,13 @@ import UploadPage from "./pages/UploadPage";
 const theme = createMuiTheme({
     palette: {
         primary: {
-            // light: will be calculated from palette.primary.main,
             main: blue[500],
-            // dark: will be calculated from palette.primary.main,
-            // contrastText: will be calculated to contrast with palette.primary.main
         },
         secondary: {
-            light: cyan[200],
-            main: cyan[500],
-            // dark: will be calculated from palette.secondary.main,
-            contrastText: '#ffcc00',
+            light: cyan[500],
+            main: cyan[700],
+            contrastText: '#ffffff',
         },
-        // error: will use the default color
     },
     typography: { useNextVariants: true },
 });
