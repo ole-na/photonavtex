@@ -5,26 +5,25 @@
  * @throws {InvalidArgumentException}
  */
 export default function convertMetersPerSecondToKnots(speed) {
-    console.log("hier");
     try {
+        let knotsResult = null;
         switch (speed) {
             case "":
-                throw new Error("Speed is empty");
+                throw "Speed is empty";
                 break;
-            case (null || undefined):
-                throw new Error("Speed is null if the implementation is not able to measure it");
+            case (null || undefined || NaN):
+                throw "Speed is null if the implementation is not able to measure it";
                 break;
             case (isNaN(speed) || typeof speed !== "number"):
-                throw new Error("Speed is not a number");
+                throw "Speed is not a number";
                 break;
             default:
+                const approximately = 1.9438;
+                let knotsResult = speed * approximately;
                 break;
         }
+        return knotsResult;
     } catch(err) {
         console.error("Error: param for speed value is not available or correct");
-    } finally {
-        const approximately = 1.9438;
-        const knotsResult = speed * approximately;
-        return knotsResult;
     }
 }
