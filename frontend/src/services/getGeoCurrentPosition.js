@@ -45,7 +45,7 @@ function onError(error) {
         case error.TIMEOUT:
             errorText = "The request to get user location timed out."
             break;
-        case error.UNKNOWN_ERR:
+        default:
             errorText = "An unknown error occurred."
             break;
     }
