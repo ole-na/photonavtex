@@ -54,6 +54,7 @@ export default function RouteSetting(props) {
     const handleReset = event => {
         setRoute({start: "", end: "", points: []})
         setErrors({start: false, end: false, points: []})
+        setPoints([])
     }
 
     /* useEffect(() => {
