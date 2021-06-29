@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Slider from "@material-ui/core/Slider";
@@ -39,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DistanceSetting(props) {
     const classes = useStyles();
+    const [distance, setDistance] = useState(props.distance)
+
+    const handleChange = (event) => {
+        setDistance(event.target.value);
+    };
+
     return (
         <div className={props.settingClasses.root}>
             <ThemeProvider theme={theme}>
@@ -46,12 +52,13 @@ export default function DistanceSetting(props) {
                     <FormLabel id="discrete-slider-always" component="legend"
                                className={props.settingClasses.fieldsetLegend}>Distance</FormLabel>
                     <Slider className={classes.sliderMiles}
-                            defaultValue={15}
+                            defaultValue={distance}
                             getAriaValueText={valuetext}
                             aria-labelledby="discrete-slider-always"
                             step={5}
                             marks={marks}
                             valueLabelDisplay="on"
+                            onChange={handleChange}
                     />
                     <FormHelperText>You can define here the maximale value for the distance from the route (in nautical miles).</FormHelperText>
                 </FormControl>

@@ -25,10 +25,7 @@ const checkBoxStyles = theme => ({
 const CustomCheckbox = withStyles(checkBoxStyles)(Checkbox);
 
 export default function WarningCategorySetting(props) {
-    const [state, setState] = useState({
-        warningA: true,
-        warningD: true,
-    });
+    const [state, setState] = useState(props.warningCategory);
 
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });

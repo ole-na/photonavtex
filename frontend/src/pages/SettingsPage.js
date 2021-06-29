@@ -4,8 +4,11 @@ import SettingsForm from "../components/settings/SettingsForm";
 
 export default function SettingsPage() {
     const [settings, setSettings] = useState({
-        warningCategory: "",
-        distance: "",
+        warningCategory: {
+            warningA: true,
+            warningD: true,
+        },
+        distance: "15",
         route: {
             start: "",
             end: "",
