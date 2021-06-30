@@ -43,10 +43,7 @@ export default function SettingsPage() {
 
             {isLoading && <p>Loading...</p>}
 
-            {!isLoading && error ? (
-                <p>Oh no something went wrong!</p>
-
-            ) : null}
+            {!isLoading && error && <p>Oh no something went wrong!</p>}
 
             {settings ? <SettingsForm settings={settings} /> : null}
 
