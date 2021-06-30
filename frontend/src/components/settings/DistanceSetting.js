@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Slider from "@material-ui/core/Slider";
@@ -39,10 +39,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DistanceSetting(props) {
     const classes = useStyles();
-    const [distance, setDistance] = useState(props.distance)
+    const [value, setValue] = useState(props.distance)
 
-    const handleChange = (event) => {
-        setDistance(event.target.value);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
 
     return (
@@ -52,7 +52,7 @@ export default function DistanceSetting(props) {
                     <FormLabel id="discrete-slider-always" component="legend"
                                className={props.settingClasses.fieldsetLegend}>Distance</FormLabel>
                     <Slider className={classes.sliderMiles}
-                            defaultValue={distance}
+                            value={value}
                             getAriaValueText={valuetext}
                             aria-labelledby="discrete-slider-always"
                             step={5}
