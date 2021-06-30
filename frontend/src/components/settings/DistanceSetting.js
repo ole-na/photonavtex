@@ -25,7 +25,7 @@ const marks = [
     },
 ];
 
-function valuetext(value) {
+function valueText(value) {
     return `${value}nm`;
 }
 
