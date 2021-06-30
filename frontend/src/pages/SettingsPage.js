@@ -8,7 +8,7 @@ export default function SettingsPage() {
             warningA: true,
             warningD: true,
         },
-        distance: "15",
+        distance: 15,
         route: {
             start: "",
             end: "",
