@@ -48,9 +48,9 @@ export default function SettingsPage() {
 
             ) : null}
 
-            {settings ? <SettingsForm settings={settings} /> : null}
+            {settings && <SettingsForm settings={settings} />}
 
-            {!settings && !isLoading ? <div>No settings data yet</div> : null}
+            {!settings && !isLoading && <div>No settings data yet</div>}
 
         </section>
     );
