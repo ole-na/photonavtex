@@ -15,7 +15,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 import RoutePoint from "./RoutePoint";
 import RouteHints from "./RouteHints";
-import {routeServices} from "./routeServices";
+import * as routeServices from "./routeServices";
 
 const theme = createMuiTheme();
 
@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
+const pointsValues = []
+
 export default function RouteSetting(props) {
     const classes = useStyles()
 
@@ -40,15 +42,15 @@ export default function RouteSetting(props) {
     });
 
     // initial array hook with input name values for points (not start and end)
-    const pointsValues = []
     for (let i in props.route.points) {
-        pointsValues[i] = "point" + i
+        pointsValues[i] = i
     }
+
     const [points, setPoints] = useState(pointsValues)
 
     // check required values for start and end only, other points are optional
     const { start, end } = route;
-    const error = [ start, end ].filter((v) => v).length === 0;
+    const error = !(start && end)
 
     // set values of start and end to empty string and delete other points
     const handleReset = event => {
@@ -74,11 +76,11 @@ export default function RouteSetting(props) {
         const value = event.target.value
         const errorValue = (value === "" || !routeServices.checkRoutePointValue(value))
 
-        const newRoutePoints = route.points
+        const newRoutePoints = [...route.points]
         newRoutePoints[index] = value
         setRoute({...route, points: newRoutePoints});
 
-        const newErrors = errors.points
+        const newErrors = [...errors.points]
         newErrors[index] = errorValue;
         setErrors({...errors, points: newErrors});
     }
@@ -88,18 +90,18 @@ export default function RouteSetting(props) {
         event.preventDefault();
 
         // add new point to route.points
-        const newRoutePoints = route.points
+        const newRoutePoints = [...route.points]
         newRoutePoints.push("")
         setRoute({...route, points: newRoutePoints});
 
         // add new point to errors.points
-        const newErrorPoints = errors.points
+        const newErrorPoints = [...errors.points]
         newErrorPoints.push(false)
         setErrors({...errors, points: newErrorPoints});
 
         // find the biggest number in points array and use this value for the new element (+1)
-        const pointName = points.length > 0 ? (Math.max.apply(null, points) + 1) : 1
-        const newPoints = points.slice();
+        const pointName = points.length > 0 ? (Math.max(...points) + 1) : 1
+        const newPoints = [...points]
         newPoints.push(pointName);
         setPoints(newPoints);
     }
@@ -109,17 +111,17 @@ export default function RouteSetting(props) {
         event.preventDefault()
 
         // update route: delete current point from route.points list
-        const newRoutePoints = route.points
+        const newRoutePoints = [...route.points]
         newRoutePoints.splice(index, 1)
         setRoute({...route, points: newRoutePoints});
 
         // update errors: delete current error from error.points list
-        const newErrors = errors.points
+        const newErrors = [...errors.points]
         newErrors.splice(index, 1)
         setErrors({...errors, points: newErrors});
 
         // update points:  delete current error from points list
-        const newPoints = points
+        const newPoints = [...points]
         newPoints.splice(index, 1)
         setPoints(newPoints)
     }
