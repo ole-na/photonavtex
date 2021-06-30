@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 // import { getSettings } from '../services/settingsApi'
 import SettingsForm from "../components/settings/SettingsForm";
 
@@ -19,7 +19,7 @@ export default function SettingsPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
 
-    const fetchData = async () => {
+    useEffect(() => {
         setIsLoading(true);
         setError(null);
 
@@ -31,7 +31,7 @@ export default function SettingsPage() {
             setError(e);
             setIsLoading(false);
         }
-    };
+    })
 
     return (
         <section>
