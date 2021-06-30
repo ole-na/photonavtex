@@ -45,7 +45,6 @@ export default function RouteSetting(props) {
     for (let i in props.route.points) {
         pointsValues[i] = i
     }
-
     const [points, setPoints] = useState(pointsValues)
 
     // check required values for start and end only, other points are optional
