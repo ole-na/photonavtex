@@ -47,10 +47,6 @@ export default function RouteSetting(props) {
     }
     const [points, setPoints] = useState(pointsValues)
 
-    // check required values for start and end only, other points are optional
-    const { start, end } = route;
-    const error = !(start && end)
-
     // set values of start and end to empty string and delete other points
     const handleReset = event => {
         setRoute({start: "", end: "", points: []})
@@ -128,7 +124,7 @@ export default function RouteSetting(props) {
     return (
         <div className={props.settingClasses.root}>
             <ThemeProvider theme={theme}>
-                <FormControl required error={error} component="fieldset" className={props.settingClasses.formControl}>
+                <FormControl component="fieldset" className={props.settingClasses.formControl}>
                     <FormLabel component="legend" className={props.settingClasses.fieldsetLegend}>Route</FormLabel>
                     <FormHelperText>Please define start and end points of your route at least</FormHelperText>
                     <FormGroup className={classes.formContainer}>
