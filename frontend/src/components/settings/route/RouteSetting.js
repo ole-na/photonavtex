@@ -39,7 +39,6 @@ export default function RouteSetting(props) {
         points: []
     });
 
-    // initial array hook with input name values for points (not start and end)
     const pointsValues = []
     for (let i in props.route.points) {
         pointsValues[i] = "point" + i
