@@ -53,7 +53,7 @@ export default function DistanceSetting(props) {
                                className={props.settingClasses.fieldsetLegend}>Distance</FormLabel>
                     <Slider className={classes.sliderMiles}
                             value={value}
-                            getAriaValueText={valuetext}
+                            getAriaValueText={valueText}
                             aria-labelledby="discrete-slider-always"
                             step={5}
                             marks={marks}
