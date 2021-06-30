@@ -65,7 +65,7 @@ export default function RouteSetting(props) {
     // handle changes on start/end fields: update hooks for route and errors
     const handleChange = (event, item) => {
         const value = event.target.value
-        const errorValue = (value === "" || !routeServices.checkRoutePointValue(value))
+        const errorValue = !routeServices.checkRoutePointValue(value)
         setRoute({...route, [item]: value});
         setErrors({...errors, [item]: errorValue});
     }
