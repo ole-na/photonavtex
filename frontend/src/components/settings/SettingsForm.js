@@ -31,7 +31,6 @@ export default function SettingsForm(props) {
     })
     const handleSubmit = event => {
         event.preventDefault()
-        // saveSettings();
     }
 
     return (
