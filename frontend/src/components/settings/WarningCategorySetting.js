@@ -5,15 +5,22 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormHelperText from "@material-ui/core/FormHelperText";
-
-import {ThemeProvider} from "styled-components";
-import { createMuiTheme } from "@material-ui/core/styles";
 import withStyles from "@material-ui/core/styles/withStyles";
 import blue from "@material-ui/core/colors/blue";
+import {makeStyles} from "@material-ui/core/styles";
 
-const theme = createMuiTheme();
+const useStyles = makeStyles(() => ({
+    formControl: {
+        border: '1px solid #000',
+        borderRadius: '4px',
+        padding: '20px',
+        marginBottom: '2em',
+        width: '100%',
+        boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)',
+    },
+}))
 
-const checkBoxStyles = theme => ({
+const checkBoxStyles = () => ({
     root: {
         '&$checked': {
             color: blue[700],
@@ -25,33 +32,31 @@ const checkBoxStyles = theme => ({
 const CustomCheckbox = withStyles(checkBoxStyles)(Checkbox);
 
 export default function WarningCategorySetting(props) {
+    const classes = useStyles()
+
     const [state, setState] = useState(props.warningCategory);
+
+    const { warningA, warningD } = state;
+    const error = [warningA, warningD].filter((v) => v).length === 0;
 
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
     };
 
-    const { warningA, warningD } = state;
-    const error = [warningA, warningD].filter((v) => v).length === 0;
-
     return (
-        <div className={props.settingClasses.root}>
-            <ThemeProvider theme={theme}>
-                <FormControl required error={error} component="fieldset" className={props.settingClasses.formControl}>
-                    <FormLabel component="legend" className={props.settingClasses.fieldsetLegend}>Warning categories</FormLabel>
-                    <FormHelperText>Please select only one or both warning types</FormHelperText>
-                    <FormGroup>
-                        <FormControlLabel
-                            control={<CustomCheckbox checked={warningA} onChange={handleChange} name="warningA" />}
-                            label="A: Nautical warnings"
-                        />
-                        <FormControlLabel
-                            control={<CustomCheckbox checked={warningD} onChange={handleChange} name="warningD" />}
-                            label="D: Search and rescue information and pirate warnings"
-                        />
-                    </FormGroup>
-                </FormControl>
-            </ThemeProvider>
-        </div>
+        <FormControl required error={error} component="fieldset" className={classes.formControl}>
+            <FormLabel component="legend"><b>Warning categories</b></FormLabel>
+            <FormHelperText>Please select only one or both warning types</FormHelperText>
+            <FormGroup>
+                <FormControlLabel
+                    control={<CustomCheckbox checked={warningA} onChange={handleChange} name="warningA" />}
+                    label="A: Nautical warnings"
+                />
+                <FormControlLabel
+                    control={<CustomCheckbox checked={warningD} onChange={handleChange} name="warningD" />}
+                    label="D: Search and rescue information and pirate warnings"
+                />
+            </FormGroup>
+        </FormControl>
     );
 }
