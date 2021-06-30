@@ -61,23 +61,26 @@ export default function RouteSetting(props) {
         console.log("R:", route, "E:", errors, "P", points)
     }, [route, errors, points]) */
 
-    // update hooks for route, errors and points: index of end ist
-    const handleChange = (event, item, index) => {
+    // handle changes on start/end fields: update hooks for route and errors
+    const handleChange = (event, item) => {
+        const value = event.target.value
+        const errorValue = (value === "" || !routeServices.checkRoutePointValue(value))
+        setRoute({...route, [item]: value});
+        setErrors({...errors, [item]: errorValue});
+    }
+
+    // handle changes on point fields: update hooks for route, errors and points
+    const handleChangePoint = (event, index) => {
         const value = event.target.value
         const errorValue = (value === "" || !routeServices.checkRoutePointValue(value))
 
-        if(item === "points") {
-            const newRoutePoints = route.points
-            newRoutePoints[index] = value
-            setRoute({...route, [item]: newRoutePoints});
+        const newRoutePoints = route.points
+        newRoutePoints[index] = value
+        setRoute({...route, points: newRoutePoints});
 
-            const newErrors = errors.points
-            newErrors[index] = errorValue;
-            setErrors({...errors, [item]: newErrors});
-        } else {
-            setRoute({...route, [item]: value});
-            setErrors({...errors, [item]: errorValue});
-        }
+        const newErrors = errors.points
+        newErrors[index] = errorValue;
+        setErrors({...errors, points: newErrors});
     }
 
     // add new point: update route, errors, points
@@ -137,7 +140,7 @@ export default function RouteSetting(props) {
                                             value={route.start}
                                             error={errors.start}
                                             iconColor={green}
-                                            onChange={(event) => handleChange(event, "start", 0)}
+                                            onChange={(event) => handleChange(event, "start")}
                                             onClear={(event) => {routeServices.clearRoutePointValue(event, "startField")}}
                                 />
                             </Grid>
@@ -152,7 +155,7 @@ export default function RouteSetting(props) {
                                                     value={route.points[index]}
                                                     error={errors.points[index]}
                                                     iconColor={grey}
-                                                    onChange={(event) => handleChange(event, "points", index)}
+                                                    onChange={(event) => handleChangePoint(event, index)}
                                                     onClear={(event) => {deleteRouteItem(event, index)}}
                                         />
                                     </Grid>
@@ -167,7 +170,7 @@ export default function RouteSetting(props) {
                                             value={route.end}
                                             error={errors.end}
                                             iconColor={red}
-                                            onChange={(event) => handleChange(event, "end", -1)}
+                                            onChange={(event) => handleChange(event, "end")}
                                             onClear={(event) => {routeServices.clearRoutePointValue(event, "endField")}}
                                 />
                             </Grid>
