@@ -72,7 +72,7 @@ export default function WarningText({ocrText}) {
 
     // RADIUS OF 500 METERS
     let radius = false
-    words.map((word, index) => {
+    words.map((word) => {
         if(word === "RADIUS") {
             radius = true
         }
@@ -85,19 +85,16 @@ export default function WarningText({ocrText}) {
 
     return (<>
         <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-                {/*{words.join(' ')}*/}
-                <TextField className={classes.warningTextarea}
-                    id="outlined-multiline-static"
-                    label="Editable warning text"
-                    multiline
-                    /*rows={4}*/
-                    defaultValue={words.join(' ')}
-                    variant="outlined"
-                />
-
-
-            </Typography>
+            {/*<Typography variant="body2" color="textSecondary" component="p">
+                {words.join(' ')}
+            </Typography>*/}
+            <TextField className={classes.warningTextarea}
+                id="outlined-multiline-static"
+                label="Editable warning text"
+                multiline
+                defaultValue={words.join(' ')}
+                variant="outlined"
+            />
         </CardContent>
         <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">

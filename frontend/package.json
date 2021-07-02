@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "@material-ui/styles": "^4.11.4",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
@@ -16,6 +17,7 @@
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-images-upload": "^1.2.8",
+    "react-images-uploading": "^3.1.2",
     "react-query": "^3.18.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
