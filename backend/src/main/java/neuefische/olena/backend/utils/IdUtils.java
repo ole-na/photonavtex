@@ -1,4 +1,4 @@
-package neuefische.rem_java_21_2.backend.utils;
+package neuefische.olena.backend.utils;
 
 import org.springframework.stereotype.Service;
 

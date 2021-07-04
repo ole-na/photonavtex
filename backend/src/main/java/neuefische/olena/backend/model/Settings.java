@@ -1,4 +1,4 @@
-package neuefische.rem_java_21_2.backend.model;
+package neuefische.olena.backend.model;
 
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
