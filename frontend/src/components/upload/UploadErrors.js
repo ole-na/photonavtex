@@ -38,5 +38,11 @@ export default function UploadErrors(props) {
             </Alert>
         )}
 
+        {props.dbError && (
+            <Alert severity="error" className={classes.marginTop}>
+                The warning with the same data is already saved. Please use another NavTex image.
+            </Alert>
+        )}
+
     </>);
 }
