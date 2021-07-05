@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.util.Pair;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class Warning {
     private Category category;
     private Boolean radius;
     private GeoObject geoObject;
-    private ArrayList<Pair<Double, Double>> position;
+    private ArrayList<LatLongPair<Double, Double>> position;
     private Double distance;
 }
 

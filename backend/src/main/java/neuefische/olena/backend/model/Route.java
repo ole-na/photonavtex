@@ -17,5 +17,5 @@ import java.util.ArrayList;
 public class Route {
     private Pair<Double, Double> start;
     private Pair<Double, Double> end;
-    private ArrayList<Pair<Double, Double>> points;
+    private ArrayList<LatLongPair<Double, Double>> points;
 }
