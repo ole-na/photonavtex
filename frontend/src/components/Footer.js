@@ -25,6 +25,7 @@ const useStyles = makeStyles({
         left: 0,
         width: "100%",
         borderTop: '1px solid ' + blue[100],
+        zIndex: 3000,
     },
     copyright: {
         padding: "0.1rem",
