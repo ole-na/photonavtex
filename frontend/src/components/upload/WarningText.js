@@ -17,13 +17,15 @@ import {TextField} from "@material-ui/core";
 import axios from "axios";
 
 import * as TextHelping from './manipulateText'
+import cyan from "@material-ui/core/colors/cyan";
 
 const useStyles = makeStyles((theme) => ({
     textCardContent: {
         boxSizing: 'border-box',
         //overflow: 'scroll',
         paddingTop: '0',
-        marginTop: '-2em',
+        marginTop: '-1em',
+        paddingBottom: '0',
     },
     warningTextarea: {
         width: '100%',
@@ -38,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)',
+    },
+    cardActions: {
+        backgroundColor: cyan[300],
     },
     formControl: {
         width: '95%',
@@ -66,13 +71,13 @@ export default function WarningText(props) {
     const setWarningDataFromText = (text) => {
         const words = text.trim().split(' ')
 
-        const title = words[0]
+        const title = words[0].split(/\n/)[0]
 
-        const warningCategory = words[1].substr(1,1).toUpperCase()
+        const warningCategory = words[0].substr(1,1).toString().toUpperCase()
 
         let position = text.matchAll(/\d+-\d+.\d+(N|S) \d+-\d+.\d+(E|W)/g)
 
-        let geoObject = text.includes(" LINE ") ? "LINE" : text.includes(" AREA ") ? "AREA" : "POINT";
+        let geoObject = text.includes(" LINE") ? "LINE" : text.includes(" AREA") ? "AREA" : "POINT";
         console.log("GeoObject:" , geoObject);
 
         // RADIUS OF 500 METERS
@@ -80,17 +85,19 @@ export default function WarningText(props) {
 
         const finalText = words.join(' ')
 
+        checkWarningCategory(warningCategory);
+
         setWarningData({
-            title: title,
+            title: title.toString().toUpperCase(),
             category: warningCategory,
-            text: finalText,
+            text: finalText.toString(),
             radius: radius,
-            geoobject: geoObject,
+            geoObject: geoObject.toString(),
             position: position,
         })
-
-        console.log("Coords:", position);
     }
+
+    console.log("WarningData:", warningData);
 
     const checkEditabledText = (text) => {
         const errorTextarea = text.includes("ZCZC") ? true : text.includes("NNNN") ? true : false
@@ -99,6 +106,14 @@ export default function WarningText(props) {
             return errorTextarea.toString()
         }
         return text
+    }
+
+    const checkWarningCategory = (category) => {
+        const dbWarningData = ["A", "D"]
+        if (!dbWarningData.includes(category)) {
+            setCategoryHint(true)
+            props.disableWarningSaveButton()
+        }
     }
 
     const detectText = (textValue) => {
@@ -110,7 +125,6 @@ export default function WarningText(props) {
         const tmpText = TextHelping.removeSpacesOnLineStart(checkedText)
 
         setWarningDataFromText(tmpText)
-        getWarningCategory();
     }
 
     const handleExpandClick = () => {
@@ -122,15 +136,8 @@ export default function WarningText(props) {
         detectText(e.target.defaultValue)
     }
 
-    const getWarningCategory = () => {
-        const dbWarningData = ["A", "D"]
-        if (!dbWarningData.includes(warningData.category)) {
-            setCategoryHint(true)
-            props.disableWarningSaveButton()
-        }
-    }
-
     useEffect(() => {
+        setWarningData(props.warningData)
         detectText(props.ocrText)
         axios
             .get(`/category`)
@@ -166,17 +173,18 @@ export default function WarningText(props) {
                 />
             </FormControl>
         </CardContent>
-        <CardActions disableSpacing>
+        <CardActions disableSpacing className={classes.cardActions}>
             <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
+                <FavoriteIcon color="white" />
             </IconButton>
             <IconButton aria-label="share">
-                <ShareIcon />
+                <ShareIcon color="white" />
             </IconButton>
             <IconButton
                 className={clsx(classes.expand, {
                     [classes.expandOpen]: expanded,
                 })}
+                color="white"
                 onClick={handleExpandClick}
                 aria-expanded={expanded}
                 aria-label="show more"
@@ -189,7 +197,7 @@ export default function WarningText(props) {
                 <Typography paragraph>
                     Warning: {warningData.title}<br />
                     Warning Category: {warningData.category}<br />
-                    Geo Object: {warningData.geoobject}<br />
+                    Geo Object: {warningData.geoObject}<br />
                     {/*Position:
                     {position.map((coord) => {
                     return (<span key={coord}>"[" + coord + "],"</span>)
@@ -201,6 +209,7 @@ export default function WarningText(props) {
                     <Alert severity="error">
                         The category <b>{warningData.category}</b> is not supported in PhotoNavTex.
                         Please select another NAVTEX with category <b>A</b> or <b>D</b>.
+                        This error can occur if the image text doesn't begin with "ZCZC" and end to "NNNN".
                     </Alert>
                 }
             </CardContent>
