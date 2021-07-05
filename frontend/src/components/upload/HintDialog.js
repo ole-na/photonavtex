@@ -54,12 +54,13 @@ export default function HintDialog({warningTitle}) {
                 </DialogActions>
                 <DialogContent className={classes.dialogContent}>
                     <DialogContentText id="text-alert-dialog-description">
-                        The text of message can be changed, if some words are not detected correctly.
+                        The text of message can be changed, if some words are not recognized correctly.
                         Please compare the text below with image text and change it if desired.
                     </DialogContentText>
                     <Alert severity="warning" className={classes.hintAlert}>
                         The editable text should not include the words 'ZCZC' and 'NNNN'.
-                        The first word in this field should be a message identifier{warningTitle !== "" && <b> {warningTitle}</b>}
+                        The first word in this field should be a message identifier{warningTitle !== "" && <b> {warningTitle}</b>}.
+                        But the image should have these words on the begin/end.
                     </Alert>
                 </DialogContent>
             </Dialog>
