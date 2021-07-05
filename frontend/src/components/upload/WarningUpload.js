@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
     media: {
         objectFit: 'contain',
-        width: '100%',
+        maxWidth: '100%',
     },
     marginTop: {
         marginTop: '2em',
