@@ -43,7 +43,7 @@ public class WarningController {
     }
 
     @GetMapping("/settings")
-    public List<Settings> getSettings(){
+    public Settings getSettings(){
         return settingsService.getSettings();
     }
 
