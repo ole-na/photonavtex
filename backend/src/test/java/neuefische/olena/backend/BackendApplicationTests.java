@@ -1,4 +1,4 @@
-package neuefische.rem_java_21_2.backend;
+package neuefische.olena.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

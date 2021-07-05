@@ -18,7 +18,7 @@ public class SettingsService {
         this.repository = repository;
     }
 
-    public List<Settings> getSettings() {
+    public Settings getSettings() {
         return repository.getSettings();
     }
 
@@ -26,8 +26,7 @@ public class SettingsService {
         return Arrays.asList(Category.A, Category.D);
     }
 
-    public Settings saveSettings(Settings settingsToSave) { return repository.saveSettings(settingsToSave); }
-
-    public Settings updateSettings(Settings settingsToSave) { return repository.updateSettings(settingsToSave); }
-
+    public Settings saveSettings(Settings settingsToSave) {
+        return repository.save(settingsToSave);
+    }
 }

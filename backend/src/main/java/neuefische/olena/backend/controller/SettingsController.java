@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping ("/settings")
@@ -18,17 +19,13 @@ public class SettingsController {
     }
 
     @GetMapping
-    public List<Settings> getSettings(){
+    public Settings getSettings(){
         return settingsService.getSettings();
     }
 
-    @PutMapping
+    @PostMapping
     public Settings saveSettings(@RequestBody Settings settings) {
         return settingsService.saveSettings(settings);
     }
 
-    @PostMapping
-    public Settings updateSettings(@RequestBody Settings settings) {
-        return settingsService.updateSettings(settings);
-    }
 }
