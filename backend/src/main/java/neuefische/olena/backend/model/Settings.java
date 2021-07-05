@@ -10,8 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Getter
-@Setter
 @Document (collection = "settings")
 public class Settings {
     private List<Category> category = Arrays.asList(Category.A, Category.D);
