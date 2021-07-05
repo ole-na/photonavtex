@@ -12,10 +12,5 @@ import lombok.NoArgsConstructor;
 public class LatLongPair<X extends Double, Y extends Double> {
     private X latitude;
     private Y longitude;
-
-    /*public LongLatPair(X latitude, Y longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }*/
 }
 
