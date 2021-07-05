@@ -1,6 +1,6 @@
 import React from "react";
-import UploadButtons from "../components/UploadButtons";
 import AutoRotatingCarouselComponent from "../components/AutoRotatingCarouselComponent";
+import UploadButtons from "../components/UploadButtons";
 
 export default function HomePage() {
     return (
