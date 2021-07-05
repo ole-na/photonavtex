@@ -155,21 +155,34 @@ export default function WarningText(props) {
     return (<>
         <CardContent className={classes.textCardContent}>
             <FormControl error={error} component="fieldset" className={classes.formControl}>
-                <FormLabel component="legend" className={classes.legend}><b>Warning Text</b>&nbsp;<HintDialog warningTitle={warningData.title}/></FormLabel>
+                <FormLabel component="legend" className={classes.legend}>
+                    <b>Warning Text</b>&nbsp;<HintDialog warningTitle={warningData.title}/>
+                </FormLabel>
+
                 {error &&
                     <Alert severity="error" className={classes.marginTop}>
-                        This editable text should not include the words 'ZCZC' and 'NNNN'.
+                        The editable text should not include the words 'ZCZC' and 'NNNN'.
                     </Alert>
                 }
+
+                {categoryHint &&
+                    <Alert severity="error" className={classes.marginTop}>
+                        Please select only NAVTEX of category <b>A</b> or <b>D</b>.
+                        The category can be wrong recognized, if the image text doesn't begin with "ZCZC" and end to "NNNN".
+                        The first word in the editable text should be a warning identifier, e.g. PA18.
+                    </Alert>
+                }
+
                 <TextField className={classes.warningTextarea}
-                           id="outlined-multiline-static"
+                           id="editableTextarea"
                            multiline
                            required
-                           label="Editable warning text"
+                           label={categoryHint ? "Not editable warning text" : "Editable warning text"}
                            defaultValue={warningData.text}
                            error={error}
                            onChange={(e) => {onChangeText(e)}}
                            variant="outlined"
+                           disabled={categoryHint}
                 />
             </FormControl>
         </CardContent>
@@ -194,24 +207,16 @@ export default function WarningText(props) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-                <Typography paragraph>
+                <Typography>
                     Warning: {warningData.title}<br />
-                    Warning Category: {warningData.category}<br />
+                    Category: {warningData.category}<br />
                     Geo Object: {warningData.geoObject}<br />
                     {/*Position:
                     {position.map((coord) => {
                     return (<span key={coord}>"[" + coord + "],"</span>)
                     })}<br />*/}
-                    Radius: {warningData.radius === true ? "available" : "-"}
+                    Radius: {warningData.radius === true ? "yes" : "no"}
                 </Typography>
-
-                {categoryHint &&
-                    <Alert severity="error">
-                        The category <b>{warningData.category}</b> is not supported in PhotoNavTex.
-                        Please select another NAVTEX with category <b>A</b> or <b>D</b>.
-                        This error can occur if the image text doesn't begin with "ZCZC" and end to "NNNN".
-                    </Alert>
-                }
             </CardContent>
         </Collapse>
 
