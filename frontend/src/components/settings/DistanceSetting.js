@@ -22,6 +22,10 @@ const marks = [
         value: 50,
         label: '50nm',
     },
+    {
+        value: 100,
+        label: '100nm',
+    },
 ];
 
 function valueText(value) {
