@@ -1,4 +1,4 @@
-package neuefische.olena.backend.model;
+package de.neuefische.olena.backend.model;
 
 public enum GeoObject {
     AREA,
