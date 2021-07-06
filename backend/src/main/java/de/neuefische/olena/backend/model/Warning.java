@@ -1,4 +1,4 @@
-package neuefische.olena.backend.model;
+package de.neuefische.olena.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,7 +22,7 @@ public class Warning {
     private Category category;
     private Boolean radius;
     private GeoObject geoObject;
-    private ArrayList<LatLongPair<Double, Double>> position;
+    private List<List<Double>> position;
     private Double distance;
 }
 
