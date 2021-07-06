@@ -41,13 +41,18 @@ class CategoryTest {
     @Test
     @DisplayName ("Test Category with wrong value")
     public void testCategoryIllegalArgumentsException(){
+        // GIVEN
         boolean exceptionThrown = false;
+
+        // WHEN
         try{
             Category badCategory = Category.valueOf("Z");;
         }
         catch (IllegalArgumentException e){
             exceptionThrown = true;
         }
+
+        // THEN
         assertTrue(exceptionThrown);
     }
 }
