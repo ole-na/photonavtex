@@ -1,8 +1,8 @@
-package neuefische.olena.backend.service;
+package de.neuefische.olena.backend.service;
 
-import neuefische.olena.backend.repository.WarningRepository;
-import neuefische.olena.backend.utils.IdUtils;
-import neuefische.olena.backend.model.Warning;
+import de.neuefische.olena.backend.model.Warning;
+import de.neuefische.olena.backend.repository.WarningRepository;
+import de.neuefische.olena.backend.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class WarningService {
     }
 
     public List<Warning> getAllWarnings() {
-        return repository.getAllWarnings();
+        return repository.findAll();
     }
 
     public Warning saveWarning(Warning warningToSave) {
@@ -34,6 +34,10 @@ public class WarningService {
 
     public Optional<Warning> findWarningById(String id) {
         return repository.findById(id);
+    }
+
+    public Optional<Warning> findWarningByTitle(String title) {
+        return repository.findWarningByTitle(title);
     }
 
     public void deleteWarning(String id) {

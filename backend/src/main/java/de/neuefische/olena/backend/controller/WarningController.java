@@ -1,10 +1,7 @@
-package neuefische.olena.backend.controller;
+package de.neuefische.olena.backend.controller;
 
-import neuefische.olena.backend.model.Category;
-import neuefische.olena.backend.model.Settings;
-import neuefische.olena.backend.service.WarningService;
-import neuefische.olena.backend.model.Warning;
-import neuefische.olena.backend.service.SettingsService;
+import de.neuefische.olena.backend.model.Warning;
+import de.neuefische.olena.backend.service.WarningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +16,10 @@ import java.util.Optional;
 public class WarningController {
 
     private final WarningService warningService;
-    private final SettingsService settingsService;
 
     @Autowired
-    public WarningController(WarningService warningService, SettingsService settingsService) {
+    public WarningController(WarningService warningService) {
         this.warningService = warningService;
-        this.settingsService = settingsService;
     }
 
     @PostMapping
@@ -35,16 +30,6 @@ public class WarningController {
     @GetMapping
     public List<Warning> getAllWarnings(){
         return warningService.getAllWarnings();
-    }
-
-    @GetMapping("/category")
-    public List<Category> getCategorySetting(){
-        return settingsService.getCategory();
-    }
-
-    @GetMapping("/settings")
-    public Settings getSettings(){
-        return settingsService.getSettings();
     }
 
     @GetMapping("{id}")

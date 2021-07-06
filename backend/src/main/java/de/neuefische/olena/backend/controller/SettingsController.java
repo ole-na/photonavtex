@@ -1,12 +1,9 @@
-package neuefische.olena.backend.controller;
+package de.neuefische.olena.backend.controller;
 
-import neuefische.olena.backend.model.Settings;
-import neuefische.olena.backend.service.SettingsService;
+import de.neuefische.olena.backend.model.Settings;
+import de.neuefische.olena.backend.service.SettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping ("/settings")
@@ -18,9 +15,9 @@ public class SettingsController {
         this.settingsService = settingsService;
     }
 
-    @GetMapping
-    public Settings getSettings(){
-        return settingsService.getSettings();
+    @GetMapping("{id}")
+    public Settings getSettings(@PathVariable String id){
+        return settingsService.getSettings(id);
     }
 
     @PostMapping
