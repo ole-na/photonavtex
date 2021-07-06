@@ -1,4 +1,4 @@
-package neuefische.olena.backend.model;
+package de.neuefische.olena.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @Builder
 @Document(collection="settings")
 public class Route {
-    private LatLongPair<Double, Double> start;
-    private LatLongPair<Double, Double> end;
-    private ArrayList<LatLongPair<Double, Double>> points;
+    private List<Double> start;
+    private List<Double> end;
+    private List<List<Double>> points;
 }
