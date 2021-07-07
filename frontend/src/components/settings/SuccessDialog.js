@@ -3,7 +3,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import InfoIcon from "@material-ui/icons/Info";
 import IconButton from "@material-ui/core/IconButton";
 import CancelIcon from '@material-ui/icons/Cancel';
 import {Alert} from "@material-ui/lab";
@@ -26,12 +25,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SuccessDialog(props) {
     const classes = useStyles();
-    /*
-    const [open, setOpen] = useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };*/
 
     const handleClose = () => {
         props.setOpenSuccesDialog(false);
