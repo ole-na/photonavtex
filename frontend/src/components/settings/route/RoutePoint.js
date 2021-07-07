@@ -49,6 +49,7 @@ export default function RoutePoint(props) {
                        helperText="e.g. -54.261, 11.474 **"
                        variant="outlined"
                        className={classes.textField}
+                       onBlur={props.onBlur}
                        onChange={props.onChange}
                        InputProps={{
                            startAdornment: (
