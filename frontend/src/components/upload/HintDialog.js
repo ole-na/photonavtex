@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function HintDialog({warningTitle}) {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
