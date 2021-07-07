@@ -25,8 +25,8 @@ export default function WarningVectorLayers() {
                 [54.244, 11.391],
                 [54.206, 11.283],
             ],
-            distance: 15,
-            radius: 0
+            distance: "15nm",
+            radius: false
         },
         {
             id: "warning1",
@@ -35,8 +35,8 @@ export default function WarningVectorLayers() {
             title: "Warning Point",
             text: "Text1",
             coords: [54.261, 11.474],
-            distance: 15,
-            radius: 0
+            distance: "15nm",
+            radius: false
         },
         {
             id: "warning2",
@@ -45,8 +45,8 @@ export default function WarningVectorLayers() {
             title: "Warning Point",
             text: "Text2",
             coords: [54.195, 11.424],
-            distance: 5,
-            radius: 10,
+            distance: "5nm",
+            radius: true,
         },
         {
             id: "warning-line",
@@ -59,8 +59,8 @@ export default function WarningVectorLayers() {
                 [54.206, 11.283],
             ],
             text: "Text3",
-            distance: 20,
-            radius: 5
+            distance: "20nm",
+            radius: true
         },
         {
             id: "warning-polygon3",
@@ -74,8 +74,8 @@ export default function WarningVectorLayers() {
                 [54.270, 11.290],
             ],
             text: "Text3",
-            distance: 20,
-            radius: 5
+            distance: "20nm",
+            radius: true
         },
         {
             id: "warning-polygon-multi4",
@@ -99,8 +99,8 @@ export default function WarningVectorLayers() {
                 ],
             ],
             text: "Text3",
-            distance: 50,
-            radius: 0,
+            distance: "50nm",
+            radius: false,
         }
     ];
 
