@@ -47,13 +47,15 @@ export default function WarningCategorySetting(props) {
         setState({ ...state, [name]: event.target.checked });
 
         const catValue = (name === "warningA") ? "A" : "D"
-        const catArray = [...category]
+        let catArray = [...category]
+
         if(event.target.checked) {
             if(!catArray.includes(catValue))
                 catArray.push(catValue);
         } else if (catArray.includes(catValue)) {
-            catArray.splice(catArray.indexOf(name), 1)
+            catArray = catArray.filter(item => item !== catValue)
         }
+
         setCategory([...catArray])
         props.setSettings({...props.settings, category: catArray})
     };
