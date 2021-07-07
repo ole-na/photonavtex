@@ -23,7 +23,7 @@ public class Warning {
     private Boolean radius;
     private GeoObject geoObject;
     private List<List<Double>> position;
-    private Double distance;
+    private String distance;
 }
 
 

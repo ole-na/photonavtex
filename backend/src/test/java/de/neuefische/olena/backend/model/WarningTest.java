@@ -13,15 +13,15 @@ class WarningTest {
     private List<List<Double>> position2 = List.of(List.of(99.999, 88.888));
     Warning warning1 =  Warning.builder()
             .id("testId").title("testTitle").text("testText").radius(false).category(Category.A)
-            .geoObject(GeoObject.LINE).distance(25.0).position(position1).build();
+            .geoObject(GeoObject.LINE).distance("25nm").position(position1).build();
 
     @Test
     void builder() {
         Warning warning2 =  Warning.builder()
                 .id("t1").title("t2").text("t3").radius(true).category(Category.D)
-                .geoObject(GeoObject.AREA).distance(5.0).position(position1).build();
+                .geoObject(GeoObject.AREA).distance("5nm").position(position1).build();
         assertThat(warning2, is(new Warning("t1", "t2", "t3", Category.D, true, GeoObject.AREA,
-                position1, 5.0)));
+                position1, "5nm")));
     }
 
     @Test
@@ -62,7 +62,7 @@ class WarningTest {
 
     @Test
     void getDistance() {
-        assertThat(warning1.getDistance(), is(25.0));
+        assertThat(warning1.getDistance(), is("25nm"));
     }
 
     @Test
@@ -109,8 +109,8 @@ class WarningTest {
 
     @Test
     void setDistance() {
-        warning1.setDistance(0.0);
-        assertThat(warning1.getDistance(), is(0.0));
+        warning1.setDistance("-");
+        assertThat(warning1.getDistance(), is("-"));
     }
 
 }

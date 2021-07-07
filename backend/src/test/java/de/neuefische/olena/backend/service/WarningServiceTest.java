@@ -24,22 +24,22 @@ class WarningServiceTest {
     private List<List<Double>> position2 = List.of(List.of(99.999, 88.888));
     Warning warning1 =  Warning.builder()
             .id("testId").title("testTitle").text("testText").radius(false).category(Category.A)
-            .geoObject(GeoObject.LINE).distance(25.0).position(position1).build();
+            .geoObject(GeoObject.LINE).distance("25nm").position(position1).build();
     Warning warning2 =  Warning.builder()
             .id("testId2").title("testTitle2").text("testText2").radius(true).category(Category.D)
-            .geoObject(GeoObject.AREA).distance(25.0).position(position2).build();
+            .geoObject(GeoObject.AREA).distance("0nm").position(position2).build();
     Warning warning3 =  Warning.builder()
             .id("testId3").title("testTitle3").text("testText3").radius(false).category(Category.A)
-            .geoObject(GeoObject.POINT).distance(25.0).position(position1).build();
+            .geoObject(GeoObject.POINT).distance("-").position(position1).build();
     Warning warning4 =  Warning.builder()
             .id("testId4").title("testTitle4").text("testText4").radius(false).category(Category.A)
-            .geoObject(GeoObject.POINT).distance(25.0).position(position1).build();
+            .geoObject(GeoObject.POINT).distance("25nm").position(position1).build();
     Warning warningWithoutId4 =  Warning.builder()
             .title("testTitle4").text("testText4").radius(false).category(Category.A)
-            .geoObject(GeoObject.POINT).distance(25.0).position(position1).build();
+            .geoObject(GeoObject.POINT).distance("25nm").position(position1).build();
     Warning warningWithNullId4 =  Warning.builder()
             .id(null).title("testTitle4").text("testText4").radius(false).category(Category.A)
-            .geoObject(GeoObject.POINT).distance(25.0).position(position1).build();
+            .geoObject(GeoObject.POINT).distance("25nm").position(position1).build();
 
     @Test
     @DisplayName ("Find all warnings")
