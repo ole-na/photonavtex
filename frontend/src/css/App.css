@@ -79,3 +79,7 @@
     background-image: url("../components/map/icons/directions_boat_blue.svg");
     background-size: 18px;
 }
+
+.margin-bottom-m {
+    margin-bottom: 1em;
+}
