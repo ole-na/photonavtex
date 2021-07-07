@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Slider from "@material-ui/core/Slider";
@@ -49,10 +49,11 @@ const useStyles = makeStyles(() => ({
 
 export default function DistanceSetting(props) {
     const classes = useStyles();
-    const [value, setValue] = useState(props.distance)
+    const [value, setValue] = useState(props.settings.distance)
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        props.setSettings({...props.settings, distance: newValue})
     };
 
     return (
