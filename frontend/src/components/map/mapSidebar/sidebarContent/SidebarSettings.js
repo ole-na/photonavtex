@@ -103,10 +103,6 @@ export default function SidebarSettings() {
                     }
                 </section>)
             }
-
-
-
         </div>
     )
-
 }
