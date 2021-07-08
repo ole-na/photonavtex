@@ -39,7 +39,7 @@ export default function WarningSuccessDialog(props) {
         >
             <DialogActions>
                 <IconButton aria-label="close dialog" type="button" onClick={handleClose} autoFocus>
-                    <CancelIcon color='primary' />
+                    <CancelIcon color="primary" aria-hidden="true" />
                 </IconButton>
             </DialogActions>
             <DialogContent className={classes.dialogContent}>

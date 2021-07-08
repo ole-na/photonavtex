@@ -21,7 +21,6 @@ import WarningDataCard from "./WarningDataCard";
 const useStyles = makeStyles((theme) => ({
     textCardContent: {
         boxSizing: 'border-box',
-        //overflow: 'scroll',
         paddingTop: '0',
         marginTop: '-1em',
         paddingBottom: '0',
@@ -189,10 +188,10 @@ export default function WarningText(props) {
         </CardContent>
         <CardActions disableSpacing className={classes.cardActions}>
             <IconButton aria-label="add to favorites">
-                <FavoriteIcon color="primary" />
+                <FavoriteIcon color="primary" aria-hidden="true" />
             </IconButton>
             <IconButton aria-label="share">
-                <ShareIcon color="primary" />
+                <ShareIcon color="primary" aria-hidden="true" />
             </IconButton>
             <IconButton
                 className={clsx(classes.expand, {
