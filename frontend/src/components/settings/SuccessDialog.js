@@ -39,7 +39,7 @@ export default function SuccessDialog(props) {
         >
             <DialogActions>
                 <IconButton aria-label="close dialog" type="button" onClick={handleClose} autoFocus>
-                    <CancelIcon color='primary' />
+                    <CancelIcon color="primary" />
                 </IconButton>
             </DialogActions>
             <DialogContent className={classes.dialogContent}>

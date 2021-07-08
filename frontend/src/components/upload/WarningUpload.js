@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: '0 0 8px 2px rgb(0 0 0 / 10%)',
         border: '1px solid #d0dbe4',
     },
+    cardHeader: {
+        paddingLeft: "0",
+    },
     mediaCard: {
         paddingTop: '0',
     },
@@ -257,17 +260,17 @@ export default function WarningPhotoUpload() {
                         {imageList.map((image, index) => (
                             <div key={index} className="image-item">
                                 <Card className={classes.warningCard}>
-                                    <CardHeader action={<div className={classes.buttons}>
+                                    <CardHeader className="cardHeader" action={<div className={classes.buttons}>
                                         {stateText.ocrText.length === 0 && (
                                             <Button onClick={(e) => convertToText(e)}
                                                     variant="contained" color="primary">
-                                                Convert to text
+                                                Convert
                                             </Button>
                                         )}
                                         <Button onClick={() => onImageRemoveSetInitialStatesExclCategory(index)}
                                                 variant="contained" color="secondary" component="span"
                                                 startIcon={<DeleteForever />}>
-                                            Remove Image
+                                            New Image
                                         </Button>
                                         {stateText.ocrText.length > 0 && (!dbError && !stateImage.errors && !stateText.error) && (
                                             <Button onClick={(e) => onWarningSave(e)}

@@ -1,4 +1,8 @@
+.app {
+    background-color: #ffffff;
+}
 .app-logo {
+
   height: 3em;
   position: absolute;
   top: 0.3em;
@@ -12,8 +16,16 @@
 }
 
 .app-content-container {
-    margin-top: 5em;
-    margin-bottom: 7em;
+    height: 100%;
+}
+
+.page-content-container {
+    padding: 0 0 7.5em;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #map {
@@ -84,6 +96,12 @@
     margin-bottom: 1em;
 }
 
+.margin-top-xl {
+    margin-top: 2.5em;
+}
+
 .details-content {
     height:  calc(100% - 18px);
 }
+
+.AutoRotatingCarousel-content-7 { width: 100% !important;}

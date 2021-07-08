@@ -3,7 +3,7 @@ import MapContainerComponent from "../components/map/MapContainerComponent";
 
 export default function MapPage() {
     return (
-        <section>
+        <div className="page-content-container">
             <h2>Map</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
@@ -11,6 +11,6 @@ export default function MapPage() {
             </p>
 
             <MapContainerComponent />
-        </section>
+        </div>
     );
 }

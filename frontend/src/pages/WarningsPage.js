@@ -44,9 +44,7 @@ export default function WarningsPage() {
 
     const onDelete = (event, warningId) => {
         event.preventDefault()
-        console.log("WarningId" , warningId)
         setIsLoading(true);
-        alert(warningId.toString())
         axios
             .delete(`/warning/`+ warningId)
             .then((response) => {
@@ -80,7 +78,7 @@ export default function WarningsPage() {
     },[]);
 
     return (
-        <section>
+        <div className="page-content-container">
             <h2>My Warnings</h2>
             <div className={classes.root}>
 
@@ -140,6 +138,6 @@ export default function WarningsPage() {
                     )
                 })}
             </div>
-        </section>
+        </div>
     );
 }

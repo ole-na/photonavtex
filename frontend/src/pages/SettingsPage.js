@@ -99,16 +99,12 @@ export default function SettingsPage() {
     function handleSubmit(event){
         event.preventDefault()
         setIsLoading(true);
-
-        console.log("SETTINGS1: ", settings)
         const settingsToSaved = prepareSettingsDataForPostRequest()
         saveSettingsIntoRepository(settingsToSaved)
     }
 
-    console.log("SSSSS", settings)
-
     return (
-        <section>
+        <div className="page-content-container">
             <h2>Settings</h2>
             <p>
                 Please define or update your warning category(ies), distance from the route and route coordinates here.
@@ -121,6 +117,6 @@ export default function SettingsPage() {
             {settings && <SettingsForm settings={settings} setSettings={setSettings} handleSubmit={(event) => {handleSubmit(event)}}/>}
 
             <SuccessDialog openSuccessDialog={openSuccessDialog} setOpenSuccesDialog={setOpenSuccesDialog} />
-        </section>
+        </div>
     )
 }
