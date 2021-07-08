@@ -81,12 +81,10 @@ export default function SettingsPage() {
         const routeEndArray = changeRouteInputStringToCoordsArray(settings.route.end)
         let routePointsArray = []
 
-        if(settings.route.points.length > 0) {
-            settings.route.points.map((point, index) => {
-                const pointCoords = changeRouteInputStringToCoordsArray(point)
-                routePointsArray.push(pointCoords)
-            })
-        }
+        settings.route.points?.map((point, index) => {
+            const pointCoords = changeRouteInputStringToCoordsArray(point)
+            routePointsArray.push(pointCoords)
+        })
 
         const settingsToSaved = {...settings, route: {
                 start: routeStartArray,

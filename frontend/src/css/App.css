@@ -92,10 +92,14 @@
     background-size: 18px;
 }
 
+.map-route-listing {
+    margin: 0;
+    padding: 0 14px;
+}
+
 .margin-bottom-m {
     margin-bottom: 1em;
 }
-
 .margin-top-xl {
     margin-top: 2.5em;
 }
