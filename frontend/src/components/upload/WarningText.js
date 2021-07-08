@@ -13,7 +13,6 @@ import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
 import HintDialog from "./HintDialog";
 import {TextField} from "@material-ui/core";
-import axios from "axios";
 
 import * as TextHelping from './manipulateText'
 import cyan from "@material-ui/core/colors/cyan";
@@ -117,7 +116,6 @@ export default function WarningText(props) {
     }
 
     const checkWarningCategory = (category) => {
-        // const dbWarningData = ["A", "D"]
         if (props.categorySetting.includes(category)) {
             setCategoryHint(false)
         } else {

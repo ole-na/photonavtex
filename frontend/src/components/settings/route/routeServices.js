@@ -1,5 +1,3 @@
-import React from "react";
-
 export const clearRoutePointValue = (event, item) => {
     event.preventDefault()
     document.getElementById(item).value = "";

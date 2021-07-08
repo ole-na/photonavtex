@@ -12,7 +12,6 @@ import {CardHeader} from "@material-ui/core";
 import UploadErrors from "./UploadErrors";
 import axios from "axios";
 import Loading from "../Loading";
-import * as TextHelping from "./manipulateText";
 import {splitCoordsStringToParts} from "./manipulateText";
 import SuccessDialog from "../settings/SuccessDialog";
 
@@ -92,13 +91,6 @@ export default function WarningPhotoUpload() {
         setIsLoading(true);
         setInitialStates()
         setIsLoading(false);
-    }
-
-    function changeRouteInputStringToCoordsArray(inputValue) {
-        const coords = inputValue.split(", ")
-        const lat = parseFloat(coords[0].trim())
-        const long = parseFloat(coords[1].trim())
-        return [lat, long]
     }
 
     const onWarningSave = (e) => {
