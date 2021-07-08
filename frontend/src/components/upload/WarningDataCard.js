@@ -1,21 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 export default function WarningDataCard(props) {
-    const [warningData, setWarningData] = useState({})
-    useEffect(() => {
-        setWarningData(props.warningData)
-        console.log("Position:", props.warningData.position)
-    },[]);
     return (
         <CardContent>
             <Typography>
-                Warning: {warningData.title}<br />
-                Category: {warningData.category}<br />
-                Geo Object: {warningData.geoObject}<br />
+                Warning: {props.warningData.title}<br />
+                Category: {props.warningData.category}<br />
+                Geo Object: {props.warningData.geoObject}<br />
                 Position:&nbsp;
-                {warningData.position && warningData.position.length > 0 && warningData.position.map((pair, index) => {
+                {props.warningData.position && props.warningData.position.length > 0 && props.warningData.position.map((pair, index) => {
                    const key = "positionString" + index;
                    return (
                        <span key={key}>"{pair.join(', ').toString()}",&nbsp;
@@ -23,7 +18,7 @@ export default function WarningDataCard(props) {
                    )
                 })}
                 <br />
-                Radius: {warningData.radius === true ? "yes" : "no"}
+                Radius: {props.warningData.radius === true ? "yes" : "no"}
             </Typography>
         </CardContent>
     );
