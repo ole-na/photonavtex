@@ -4,16 +4,17 @@ import Tesseract from "tesseract.js";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
 import WarningText from "./WarningText";
-import blue from '@material-ui/core/colors/blue';
-import GridLoader from "react-spinners/GridLoader";
 import styled from "styled-components/macro";
 import {AddAPhoto, DeleteForever, SaveAlt} from "@material-ui/icons";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import {CardHeader} from "@material-ui/core";
 import UploadErrors from "./UploadErrors";
 import axios from "axios";
+import Loading from "../Loading";
+import * as TextHelping from "./manipulateText";
+import {splitCoordsStringToParts} from "./manipulateText";
+import SuccessDialog from "../settings/SuccessDialog";
 
 const useStyles = makeStyles((theme) => ({
     buttons: {
@@ -45,10 +46,10 @@ const maxNumber = 1;
 
 export default function WarningPhotoUpload() {
     const classes = useStyles();
-
     const textRef = useRef(null);
 
     const [isLoading, setIsLoading] = useState(false);
+
     const [stateImage, setStateImage] = useState({
         errors: null,
         images: null,
@@ -58,6 +59,7 @@ export default function WarningPhotoUpload() {
         ocrText: "",
     })
     const [dbError, setDbError] = useState(false)
+    const [openSuccessDialog, setOpenSuccesDialog] = useState(false);
 
     const [warningData, setWarningData] = useState({
         title: "",
@@ -66,7 +68,10 @@ export default function WarningPhotoUpload() {
         radius: false,
         geoObject: "",
         position: [],
+        distance: "",
     })
+
+    const [categorySetting, setCategorySetting] = useState([])
 
     const [disabledSaveButton, setDisabledSaveButton] = useState(false)
 
@@ -80,20 +85,51 @@ export default function WarningPhotoUpload() {
         setIsLoading(false);
     };
 
-    const onWarningSave = (e, warningData) => {
-        e.preventDefault()
+    const onImageRemoveSetInitialStatesExclCategory = () => {
         setIsLoading(true);
-        axios
-            .post("warning", warningData)
+        setInitialStates()
+        setIsLoading(false);
+    }
+
+    function changeRouteInputStringToCoordsArray(inputValue) {
+        const coords = inputValue.split(", ")
+        const lat = parseFloat(coords[0].trim())
+        const long = parseFloat(coords[1].trim())
+        return [lat, long]
+    }
+
+    const onWarningSave = (e) => {
+        e.preventDefault()
+        setDbError(false)
+
+        // detectText(e.target.defaultValue)
+
+        const savedWarningData = {...warningData}
+        const position = [...savedWarningData.position]
+        const decimalPosition = []
+        position.map((pair) => {
+            const convertedLatDecimal = splitCoordsStringToParts(pair[0]);
+            const convertedLongDecimal = splitCoordsStringToParts(pair[1]);
+            decimalPosition.push([convertedLatDecimal, convertedLongDecimal])
+        })
+        const finalData = {...savedWarningData, position: [...decimalPosition]}
+        console.log("Final:", finalData)
+        setIsLoading(true)
+         axios
+            .post("/warning", finalData)
             .then((response) => {
-                setWarningData(response.data);
+                setWarningData(response.data)
+                setDbError(false)
+                setDisabledSaveButton(true)
+                setOpenSuccesDialog(true)
             })
             .catch((error) => {
-                console.error(error);
+                console.error(error)
                 setDbError(true)
+                setOpenSuccesDialog(true)
             })
             .finally((isLoading) => {
-                setIsLoading(false);
+                setIsLoading(false)
             });
     };
 
@@ -138,6 +174,59 @@ export default function WarningPhotoUpload() {
         setDisabledSaveButton(true)
     }
 
+    const getSavedCategory = () => {
+        setIsLoading(true)
+        axios
+            .get(`/settings/olena`)
+            .then((response) => response.data)
+            .then((settingsResponse) => {
+                if(!settingsResponse) {
+                    setCategorySetting(["A", "D"]);
+                    return
+                }
+                console.log("response cat: ", settingsResponse.category)
+                setCategorySetting(settingsResponse.category);
+            })
+            .catch((error) => {
+                setCategorySetting(["A", "D"]);
+                console.error(error);
+            })
+            .finally((isLoading) => {
+                setIsLoading(false)
+            });
+    }
+
+    function setInitialStates(){
+        setIsLoading(false);
+        setStateImage({
+            errors: null,
+            images: null,
+        })
+        setStateText({
+            error: false,
+            ocrText: "",
+        })
+        setDbError(false)
+        setOpenSuccesDialog(false);
+
+        setWarningData({
+            title: "",
+            category: "",
+            text: "",
+            radius: false,
+            geoObject: "",
+            position: [],
+            distance: "",
+        })
+
+        setDisabledSaveButton(false)
+    }
+
+
+    useEffect(() => {
+        getSavedCategory()
+    },[]);
+
     return (
         <Wrapper>
             <ImageUploading
@@ -175,12 +264,12 @@ export default function WarningPhotoUpload() {
                                                 Convert to text
                                             </Button>
                                         )}
-                                        <Button onClick={() => onImageRemove(index)}
+                                        <Button onClick={() => onImageRemoveSetInitialStatesExclCategory(index)}
                                                 variant="contained" color="secondary" component="span"
                                                 startIcon={<DeleteForever />}>
-                                            Remove
+                                            Remove Image
                                         </Button>
-                                        {stateText.ocrText.length > 0 && (
+                                        {stateText.ocrText.length > 0 && (!dbError && !stateImage.errors && !stateText.error) && (
                                             <Button onClick={(e) => onWarningSave(e)}
                                                     variant="contained" color="primary" component="span"
                                                     disabled={disabledSaveButton}
@@ -198,13 +287,16 @@ export default function WarningPhotoUpload() {
                                     {!isLoading && stateText.ocrText.length > 0 ? (
                                         <WarningText ocrText={stateText.ocrText}
                                                      disableWarningSaveButton={disableWarningSaveButton}
+                                                     setDisabledSaveButton={setDisabledSaveButton}
                                                      warningData={warningData}
+                                                     setWarningData={setWarningData}
+                                                     isLoading={isLoading}
+                                                     setIsLoading={setIsLoading}
+                                                     categorySetting={categorySetting}
                                         />
                                     ) : (
                                         <CardContent>
-                                            <Typography variant="body2" color="textSecondary" component="p">
-                                                <GridLoader loading={isLoading} color={blue[700]} size={30} />
-                                            </Typography>
+                                            <Loading isLoading={isLoading}/>
                                         </CardContent>
                                     )}
                                     </div>
@@ -214,7 +306,10 @@ export default function WarningPhotoUpload() {
                     </div>
                 )}
             </ImageUploading>
+
             {(dbError || stateImage.errors || stateText.error.length > 0) && <UploadErrors errors={stateImage.errors} textError={stateText.error} dbError={dbError}/>}
+
+            <SuccessDialog openSuccessDialog={openSuccessDialog} setOpenSuccesDialog={setOpenSuccesDialog} />
         </Wrapper>
     );
 }

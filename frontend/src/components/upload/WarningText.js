@@ -5,7 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -18,6 +17,7 @@ import axios from "axios";
 
 import * as TextHelping from './manipulateText'
 import cyan from "@material-ui/core/colors/cyan";
+import WarningDataCard from "./WarningDataCard";
 
 const useStyles = makeStyles((theme) => ({
     textCardContent: {
@@ -61,12 +61,10 @@ const useStyles = makeStyles((theme) => ({
 export default function WarningText(props) {
     const classes = useStyles()
 
-    const [warningData, setWarningData] = useState({})
     const [categoryHint, setCategoryHint] = useState(false)
     const [expanded, setExpanded] = useState(false);
     const [editabledText, setEditabledText] = useState(false)
     const [error, setError] = useState(false)
-    const [savedCategory, setSavedCategory] = useState([])
 
     const setWarningDataFromText = (text) => {
         const words = text.trim().split(' ')
@@ -74,43 +72,55 @@ export default function WarningText(props) {
         const title = words[0].split(/\n/)[0]
 
         const warningCategory = words[0].substr(1,1).toString().toUpperCase()
+        checkWarningCategory(warningCategory);
 
-        let position = text.matchAll(/\d+-\d+.\d+(N|S) \d+-\d+.\d+(E|W)/g)
+        // const dmsToLonLatRegex= /[-]{0,1}[\d.]*[\d]|([NSEW])+/g;
+        // const position = text.match(/\d+-\d+((\.\d+)?)(N|S) \d+-\d+((\.\d+)?)(E|W)/g)
+        const position = text.match(/\d+-\d+(((\.|,)\d+)?)(N|S) \d+-\d+(((\.|,)\d+)?)(E|W)/g)
+        const positionData = []
+        if(position && position.length > 0) {
+            const positionPairs = [...position]
+            positionPairs.map((pair, index) => {
+                const latLongPair = pair.split(' ')
+                const lat = latLongPair[0].replaceAll(',', '').trim()
+                const long = latLongPair[1].replaceAll(',', '').trim()
+                positionData.push([lat, long])
+            })
+        } else {
+            setError(true)
+        }
 
-        let geoObject = text.includes(" LINE") ? "LINE" : text.includes(" AREA") ? "AREA" : "POINT";
-        console.log("GeoObject:" , geoObject);
+        const geoObject = text.includes(" LINE") ? "LINE" : text.includes(" AREA") ? "AREA" : "POINT";
 
-        // RADIUS OF 500 METERS
-        let radius = text.includes(" RADIUS ") ? true : false
+        const radius = text.includes(" RADIUS ") ? true : false
 
         const finalText = words.join(' ')
 
-        checkWarningCategory(warningCategory);
-
-        setWarningData({
+        props.setWarningData({
             title: title.toString().toUpperCase(),
             category: warningCategory,
             text: finalText.toString(),
             radius: radius,
             geoObject: geoObject.toString(),
-            position: position,
+            position: [...positionData],
         })
     }
-
-    console.log("WarningData:", warningData);
 
     const checkEditabledText = (text) => {
         const errorTextarea = text.includes("ZCZC") ? true : text.includes("NNNN") ? true : false
         setError(errorTextarea)
         if (error) {
+            props.setDisabledSaveButton(true)
             return errorTextarea.toString()
         }
         return text
     }
 
     const checkWarningCategory = (category) => {
-        const dbWarningData = ["A", "D"]
-        if (!dbWarningData.includes(category)) {
+        // const dbWarningData = ["A", "D"]
+        if (props.categorySetting.includes(category)) {
+            setCategoryHint(false)
+        } else {
             setCategoryHint(true)
             props.disableWarningSaveButton()
         }
@@ -120,6 +130,7 @@ export default function WarningText(props) {
         const textWithCorrectBreaks = TextHelping.unifyBreaksAfterLines(textValue)
         const checkedText = editabledText ? checkEditabledText(textWithCorrectBreaks) : TextHelping.removeFirstAndLastWrongWordsAndReturnText(textWithCorrectBreaks)
         if(checkedText === "error") {
+            props.setDisabledSaveButton(true)
             return
         }
         const tmpText = TextHelping.removeSpacesOnLineStart(checkedText)
@@ -133,34 +144,26 @@ export default function WarningText(props) {
 
     const onChangeText = (e) => {
         setEditabledText(true)
-        detectText(e.target.defaultValue)
     }
 
     useEffect(() => {
-        setWarningData(props.warningData)
+        props.setIsLoading(true)
+        props.setWarningData(props.warningData)
         detectText(props.ocrText)
-        axios
-            .get(`/category`)
-            .then((response) => {
-                setSavedCategory(response.data);
-            })
-            .catch((error) => {
-                console.error("Category Error:", error);
-            })
-            .finally((isLoading) => {
-                // setIsLoading(false);
-            });
+        props.setIsLoading(false)
     },[]);
 
     return (<>
         <CardContent className={classes.textCardContent}>
             <FormControl error={error} component="fieldset" className={classes.formControl}>
                 <FormLabel component="legend" className={classes.legend}>
-                    <b>Warning Text</b>&nbsp;<HintDialog warningTitle={warningData.title}/>
+                    <b>Warning Text</b>&nbsp;<HintDialog warningTitle={props.warningData.title}/>
                 </FormLabel>
 
                 {error &&
                     <Alert severity="error" className={classes.marginTop}>
+                        Sorry, the error occurs. Please check the editable text,
+                        especially warning identifier (B1B2B3B4) and position.
                         The editable text should not include the words 'ZCZC' and 'NNNN'.
                     </Alert>
                 }
@@ -178,7 +181,7 @@ export default function WarningText(props) {
                            multiline
                            required
                            label={categoryHint ? "Not editable warning text" : "Editable warning text"}
-                           defaultValue={warningData.text}
+                           defaultValue={props.warningData.text}
                            error={error}
                            onChange={(e) => {onChangeText(e)}}
                            variant="outlined"
@@ -188,16 +191,16 @@ export default function WarningText(props) {
         </CardContent>
         <CardActions disableSpacing className={classes.cardActions}>
             <IconButton aria-label="add to favorites">
-                <FavoriteIcon color="white" />
+                <FavoriteIcon color="primary" />
             </IconButton>
             <IconButton aria-label="share">
-                <ShareIcon color="white" />
+                <ShareIcon color="primary" />
             </IconButton>
             <IconButton
                 className={clsx(classes.expand, {
                     [classes.expandOpen]: expanded,
                 })}
-                color="white"
+                color="primary"
                 onClick={handleExpandClick}
                 aria-expanded={expanded}
                 aria-label="show more"
@@ -206,19 +209,7 @@ export default function WarningText(props) {
             </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-                <Typography>
-                    Warning: {warningData.title}<br />
-                    Category: {warningData.category}<br />
-                    Geo Object: {warningData.geoObject}<br />
-                    {/*Position:
-                    {position.map((coord) => {
-                    return (<span key={coord}>"[" + coord + "],"</span>)
-                    })}<br />*/}
-                    Radius: {warningData.radius === true ? "yes" : "no"}
-                </Typography>
-            </CardContent>
+            <WarningDataCard warningData={props.warningData} setWarningData={props.setWarningData} />
         </Collapse>
-
     </>);
 }
