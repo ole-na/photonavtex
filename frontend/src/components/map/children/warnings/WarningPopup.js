@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {Popup} from "react-leaflet";
 import calculateDistance from "../../../../services/calculateDistance";
 import getGeoCurrentPosition from "../../../../services/getGeoCurrentPosition";
-import Button from "@material-ui/core/Button";
 
 export default function WarningPopup(props) {
     const warning = props.warning;
@@ -35,22 +34,15 @@ export default function WarningPopup(props) {
         <Popup>
             <h3>
                 {(props.state && props.state === "new") && <span>New</span>}
-                NavTex
-                ({warning.category}{warning.number})
+                NavTex ({warning.number})
             </h3>
             <div className="overflow-wrap">
                 <p>Position: {warningPosition}</p>
             </div>
             <p>Text: {warning.text}</p>
-            <p>Category: {warning.type}</p>
+            <p>Type: {warning.type}</p>
             <p>Min. distance from route: {warning.distance}</p>
-            <p>Distance to me: {distanceToMe}</p>
-            {warning.radius > 0 &&
-                <p>Radius: {warning.radius}</p>
-            }
-            {(props.state && props.state === "new") &&
-                <Button>Save</Button>
-            }
+            <p>Radius: {warning.radius}</p>
         </Popup>
     )
 }
