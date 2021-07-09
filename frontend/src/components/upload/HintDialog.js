@@ -49,7 +49,7 @@ export default function HintDialog({warningTitle}) {
             >
                 <DialogActions>
                     <IconButton aria-label="close dialog" type="button" onClick={handleClose} autoFocus>
-                        <CancelIcon color="primary" aria-hidden="true" />
+                        <CancelIcon color='secondary' aria-hidden="true" />
                     </IconButton>
                 </DialogActions>
                 <DialogContent className={classes.dialogContent}>

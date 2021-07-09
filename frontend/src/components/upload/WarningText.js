@@ -184,29 +184,8 @@ export default function WarningText(props) {
                            variant="outlined"
                            disabled={categoryHint}
                 />
+                <WarningDataCard warningData={props.warningData} setWarningData={props.setWarningData} />
             </FormControl>
         </CardContent>
-        <CardActions disableSpacing className={classes.cardActions}>
-            <IconButton aria-label="add to favorites">
-                <FavoriteIcon color="primary" aria-hidden="true" />
-            </IconButton>
-            <IconButton aria-label="share">
-                <ShareIcon color="primary" aria-hidden="true" />
-            </IconButton>
-            <IconButton
-                className={clsx(classes.expand, {
-                    [classes.expandOpen]: expanded,
-                })}
-                color="primary"
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="show more"
-            >
-                <ExpandMoreIcon />
-            </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <WarningDataCard warningData={props.warningData} setWarningData={props.setWarningData} />
-        </Collapse>
     </>);
 }

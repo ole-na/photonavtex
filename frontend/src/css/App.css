@@ -137,6 +137,10 @@ body::backdrop {
     margin-top: 2.5em;
 }
 
+.padding-left-m {
+    padding-left: 1em;
+}
+
 .details-content {
     height:  calc(100% - 18px);
 }
@@ -146,3 +150,13 @@ body::backdrop {
 .accordion-item:nth-child(odd) {
     background: #f0f0f0;
 }
+
+dl.grid {
+    display: grid;
+    grid-template-columns: 120px calc(100% - 120px);
+}
+dt, dd {
+    margin-bottom: 1em;
+    margin-left: 0;
+}
+
