@@ -142,3 +142,7 @@ body::backdrop {
 }
 
 .AutoRotatingCarousel-content-7 { width: 100% !important;}
+
+.accordion-item:nth-child(odd) {
+    background: #f0f0f0;
+}

@@ -86,12 +86,13 @@ export default function WarningsPage() {
 
                 {!isLoading && error && <Alert className="margin-bottom-m" severity="error">Oh no, something went wrong!</Alert>}
 
-                {warnings.length > 0 && warnings.map((warning) => {
+                {warnings.length > 0 && warnings.map((warning, index) => {
                     const warningId = warning.id
                     const ariaControls = "warning-content-" + warningId
                     const accordionSummaryId = "warning-header-" + warningId
+
                     return (
-                        <Accordion key={warningId}>
+                        <Accordion key={warningId} className="accordion-item">
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon/>}
                                 aria-controls={ariaControls}
@@ -125,7 +126,7 @@ export default function WarningsPage() {
                                             </ul>
                                         </details>
                                         <IconButton variant="contained"
-                                                    color="secondary"
+                                                    color="primary"
                                                     className={classes.buttonDelete}
                                                     onClick={(event) => {onDelete(event, warningId)}}
                                         >
