@@ -153,7 +153,7 @@ body::backdrop {
 
 dl.grid {
     display: grid;
-    grid-template-columns: 120px calc(100% - 120px);
+    grid-template-columns: 100px calc(100% - 100px);
 }
 dt, dd {
     margin-bottom: 1em;
