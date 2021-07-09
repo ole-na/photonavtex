@@ -112,7 +112,7 @@ export default function SettingsPage() {
 
             {!isLoading && error && <Alert className="margin-bottom-m" severity="error">Oh no, something went wrong!</Alert>}
 
-            {settings && <SettingsForm settings={settings} setSettings={setSettings} handleSubmit={(event) => {handleSubmit(event)}}/>}
+            {!isLoading && settings && <SettingsForm settings={settings} setSettings={setSettings} handleSubmit={(event) => {handleSubmit(event)}}/>}
 
             <SuccessDialog openSuccessDialog={openSuccessDialog} setOpenSuccesDialog={setOpenSuccesDialog} />
         </div>
