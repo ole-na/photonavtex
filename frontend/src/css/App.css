@@ -1,5 +1,6 @@
 html, body, #root, .app {
     height: 100%;
+    background-color: #ffffff;
 }
 
 body {
