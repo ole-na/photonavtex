@@ -108,7 +108,6 @@ export default function WarningPhotoUpload() {
             decimalPosition.push([convertedLatDecimal, convertedLongDecimal])
         })
         const finalData = {...savedWarningData, position: [...decimalPosition]}
-        console.log("Final:", finalData)
         setIsLoading(true)
          axios
             .post("/warning", finalData)
@@ -179,7 +178,6 @@ export default function WarningPhotoUpload() {
                     setCategorySetting(["A", "D"]);
                     return
                 }
-                console.log("response cat: ", settingsResponse.category)
                 setCategorySetting(settingsResponse.category);
             })
             .catch((error) => {

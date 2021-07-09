@@ -1,5 +1,4 @@
 export const removeSpacesOnLineStart = (text) => {
-    console.log("FINAL", escape(text))
     let escapedText = escape(text.toString().trim())
     const textWithoutSpacesAfterBreaks = escapedText.replaceAll("%0A%20", "%0A")
     return unescape(textWithoutSpacesAfterBreaks)
@@ -25,7 +24,6 @@ export const removeFirstAndLastWrongWordsAndReturnText = (text) => {
         words.pop()
     }
     const newWords = words.join(' ').trim().split(' ')
-    console.log("Words:", newWords)
     return newWords.join(' ')
 }
 
@@ -42,11 +40,9 @@ function convertDMSToDD(degrees, minutes, seconds, direction) {
 export const splitCoordsStringToParts = (stringValue) => {
     // possible values: 51-55N, 003-40E, 003-40.55S, 45-34W, 009-43S
     const parts = stringValue.replace(",", ".").split(/[-]+/)
-    console.log("Parts", parts)
     const degree = Number(parts[0])
     const minutesSecondsDirection = parts[1]
     let minutes, seconds, direction
-    console.log('hier')
     if(minutesSecondsDirection.includes(".") || minutesSecondsDirection.includes(",")) {
         const parts2 = minutesSecondsDirection.split(/[.,]+/)
         minutes = parts2[0]
@@ -58,9 +54,7 @@ export const splitCoordsStringToParts = (stringValue) => {
         minutes = Number(minutesSecondsDirection.replace(direction, ""))
         seconds = ""
     }
-    console.log("Degree: " + degree + " Minutes: " + minutes + " Seconds: " + seconds + "Direction: " + direction)
     const convertDms2Decimal = convertDMSToDD(degree, minutes, seconds, direction);
-    console.log("Decimal: " + convertDms2Decimal);
 
     return convertDms2Decimal
 }
