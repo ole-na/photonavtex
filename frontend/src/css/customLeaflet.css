@@ -19,3 +19,17 @@
 #mapSidebar.leaflet-sidebar.collapsed {
     width: 40px;
 }
+
+.leaflet-right .leaflet-control {
+    margin-right: 0;
+}
+
+.leaflet-touch .leaflet-control-layers-toggle {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.leaflet-control-layers {
+    border-radius: 4px;
+}
