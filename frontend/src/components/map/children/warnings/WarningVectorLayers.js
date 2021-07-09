@@ -3,15 +3,9 @@ import WarningPoint from "./WarningPoint";
 import WarningPolygon from "./WarningPolygon";
 import WarningError from "./WarningError";
 import WarningLine from "./WarningLine";
-// import { getWarnings } from '../services/warningApi'
 
-export default function WarningVectorLayers() {
-    /* const [warnings, setWarnings] = useState(null)
-    useEffect(() => {
-        getWarnings.then(setWarnings)
-    }, [])*/
-
-    // dummy data: MongoDB data should be used
+export default function WarningVectorLayers(props) {
+    // TODO: dummy data, MongoDB data should be used
     const warnings = [
         {
             id: "warning0",

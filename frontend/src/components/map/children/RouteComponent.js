@@ -1,7 +1,7 @@
 import React from "react";
 import {Polyline} from "react-leaflet";
 
-// Dummy data: MongoDB data should be used
+// TODO: Dummy data, MongoDB data should be used
 const routeCoords = [
     [54.083, 11.070],
     [54.099, 11.226],
@@ -18,6 +18,6 @@ const routeCoords = [
 
 const colorOptions = { color: 'lime', weight: 5 };
 
-export default function RouteComponent() {
+export default function RouteComponent(props) {
     return <Polyline pathOptions={colorOptions} positions={routeCoords} />
 }
