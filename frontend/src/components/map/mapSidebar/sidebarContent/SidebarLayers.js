@@ -16,8 +16,7 @@ export default function SidebarLayers() {
                 OpenStreetMap DE is an OpenStreetMap with a "German" card style.
             </p>
             <p>
-                OpenSeaMap is a overlay layer.
-                OpenSeaMap is an open source, worldwide project to create a free nautical chart.
+                OpenSeaMap is an overlay map layer and an open source, worldwide project to create a free nautical chart.
                 It's a subproject of OpenStreetMap and uses its database.
             </p>
         </div>
