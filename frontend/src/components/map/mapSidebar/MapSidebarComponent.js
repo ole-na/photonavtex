@@ -33,9 +33,6 @@ export default function MapSidebarComponent() {
                 <ul role="tablist">
                     <li><a href="#mapSidebarLayers" role="tab"><i className="fa fa-map"></i></a></li>
                     <li><a href="#mapSidebarInfo" role="tab"><i className="fa fa-info"></i></a></li>
-                </ul>
-
-                <ul role="tablist">
                     <li><a href="#mapSidebarSettings" role="tab"><i className="fa fa-gear"></i></a></li>
                 </ul>
             </div>

@@ -5,33 +5,6 @@ import Divider from "@material-ui/core/Divider";
 const { BaseLayer, Overlay } = LayersControl;
 
 export default function TileLayerComponent() {
-
-    //Init Layer Control
-    /*
-    * //Init Layer Control
-var layerControl = L.control.layers(
-  basemaps,
-  overlays,
-  {
-    position: "topright",
-    collapsed: false
-  }
-).addTo(map);
-
-//Move Layers control to sidebar
-var layerControlContainer = layerControl.getContainer();
-$("#layercontrol").append(layerControlContainer);
-$(".leaflet-control-layers-list").prepend("<strong className='title'>Base Maps</strong><br>");
-$(".leaflet-control-layers-separator").after("<br><strong className='title'>Layers</strong><br>");
-    *
-    *
-    *
-
-    //Init Editable(Cosmetic) Layer for Leaflet Draw
-    const editableLayers = new L.FeatureGroup().addTo(map);
-    layerControl.addOverlay(editableLayers, "Cosmetic Layer"); */
-
-
     return (<>
         <LayersControl position="topleft">
             <h3>Base Maps</h3>

@@ -29,9 +29,7 @@ export default function  MapContainerComponent() {
             >
                 <MapSidebarComponent />
 
-                <LayersControl position="bottomright">
-                    <TileLayerComponent />
-                </LayersControl>
+                <TileLayerComponent />
 
                 <LocateControl />
 
