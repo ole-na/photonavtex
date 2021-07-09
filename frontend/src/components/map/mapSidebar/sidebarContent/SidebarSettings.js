@@ -16,48 +16,35 @@ export default function SidebarSettings(props) {
                 {props.settings &&
                     <section>
                         <p>Please go to the Settings Page to change the values.</p>
-                        <Grid
-                            container
-                            spacing={0}
-                            style={{minHeight: '5vh'}}
-                        >
-                            <Grid item xs={6}>
-                                Selected categories:
-                            </Grid>
-                            <Grid item xs={6}>
-                                {props.settings.category}
-                            </Grid>
-                            <Grid item xs={6}>
-                                Distance to the route:
-                            </Grid>
-                            <Grid item xs={6}>
-                                {props.settings.distance} nm
-                            </Grid>
+                        <dl className="grid">
+                            <dt>Selected categories:</dt>
+                            <dd>{props.settings.category}</dd>
 
-                            <Grid item xs={6}>
-                                Saved route:
-                            </Grid>
-                            <Grid item xs={6}>
-                                {props.settings.route && (
-                                    <ul className="map-route-listing">
-                                        <li>
-                                            Start: {props.settings.route.start.join(', ')}
-                                        </li>
+                            <dt>Distance to the route:</dt>
+                            <dd>{props.settings.distance} nm</dd>
 
-                                        {props.settings.route.points?.map((point, index) => {
-                                            const key = "routePoint" + {index};
-                                            return (
-                                                <li key={key}>
-                                                    Point {index+1}: {point[0]}, {point[1]}
-                                                </li>
-                                            )
-                                        })}
+                            <dt>Saved route:</dt>
+                            <dd>&nbsp;</dd>
 
-                                        <li>End: {props.settings.route.end.join(', ')}</li>
-                                    </ul>
-                                )}
-                            </Grid>
-                        </Grid>
+                            <dt className="padding-left-m">Start:</dt>
+                            <dd>{props.settings.route.start.join(', ')}</dd>
+
+                            <dt className="padding-left-m">Points</dt>
+                            <dd>
+                                {props.settings.route.points?.map((point, index) => {
+                                    const key = `routePoint_${index}`;
+                                    return (
+                                        <span key={key}>
+                                            {point[0]}, {point[1]}
+                                        <br /></span>
+                                    )
+                                })}
+                            </dd>
+
+                            <dt className="padding-left-m">End:</dt>
+                            <dd>{props.settings.route.end.join(', ')}</dd>
+                        </dl>
+
                     </section>
                 }
             </section>
