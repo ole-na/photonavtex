@@ -1,3 +1,8 @@
+#map {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
 /* border color for react-leaflet-nmscale input field: use the same color as for another control elements */
 .leaflet-control-scale-line {
     border-color: rgba(0,0,0,0.2);
@@ -18,4 +23,22 @@
 
 #mapSidebar.leaflet-sidebar.collapsed {
     width: 40px;
+}
+
+.leaflet-right .leaflet-control {
+    margin-right: 0;
+}
+
+.leaflet-touch .leaflet-control-layers-toggle {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.leaflet-control-layers {
+    border-radius: 4px;
+}
+
+.leaflet-popup {
+    z-index: 4000;
 }

@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {yellow, blue, cyan} from "@material-ui/core/colors";
 
-const AutoRotatingCarouselModal = ({ handleOpen, setHandleOpen, isMobile }) => {
+const AutoRotatingCarouselModal = ({ handleOpen, setHandleOpen}) => {
     return (
         <AutoRotatingCarousel
             label="Get started"
@@ -13,8 +13,8 @@ const AutoRotatingCarouselModal = ({ handleOpen, setHandleOpen, isMobile }) => {
             onClose={() => setHandleOpen({ open: false })}
             onStart={() => setHandleOpen({ open: false })}
             autoplay={false}
-            mobile={isMobile}
-            style={{ position: "absolute" }}
+            mobile={false}
+            style={{ position: "relative", width:"90%", height:"40%"}}
         >
             <Slide
                   media={
@@ -53,7 +53,7 @@ export default function AutoRotatingCarouselComponent() {
     const matches = useMediaQuery("(max-width:600px)");
     return (
         <>
-            <Button onClick={handleClick} variant="contained">Please click here</Button>
+            <Button onClick={handleClick} color="primary" variant="contained">Please click here</Button>
             <AutoRotatingCarouselModal
                 isMobile={matches}
                 handleOpen={handleOpen}

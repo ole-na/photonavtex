@@ -54,7 +54,7 @@ function App() {
                         <Route path={"/upload"} exact>
                             <UploadPage />
                         </Route>
-                        <Route path={"/settings"} exact>
+                        <Route path={"/settings"}>
                             <SettingsPage/>
                         </Route>
                         <Route path={"/warnings"} exact>

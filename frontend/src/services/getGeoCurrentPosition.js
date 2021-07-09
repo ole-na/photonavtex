@@ -6,9 +6,6 @@ function onSuccess(position) {
     const mapUrl = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
     const text = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
 
-    console.log("Map Link Href" + mapUrl);
-    console.log("Map Link Text" + text);
-
     const currentState = {
         hasLocation: true,
         coords: currentCoords,
@@ -54,7 +51,6 @@ function onError(error) {
 
 // device APIs are available
 function onGeolocationExist() {
-    console.log("Geolocation is available. Locating...");
     navigator.geolocation.getCurrentPosition(onSuccess, onError, {
         enableHighAccuracy: true,
         timeout: 5000,

@@ -22,6 +22,10 @@ const marks = [
         value: 50,
         label: '50nm',
     },
+    {
+        value: 100,
+        label: '100nm',
+    },
 ];
 
 function valueText(value) {
@@ -45,10 +49,11 @@ const useStyles = makeStyles(() => ({
 
 export default function DistanceSetting(props) {
     const classes = useStyles();
-    const [value, setValue] = useState(props.distance)
+    const [value, setValue] = useState(props.settings.distance)
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        props.setSettings({...props.settings, distance: newValue})
     };
 
     return (
@@ -63,7 +68,7 @@ export default function DistanceSetting(props) {
                     valueLabelDisplay="on"
                     onChange={handleChange}
             />
-            <FormHelperText>You can define here the maximum value for the distance of the route (in nautical miles).</FormHelperText>
+            <FormHelperText>You can define here the maximum value for the distance to the route (in nautical miles).</FormHelperText>
         </FormControl>
     )
 }

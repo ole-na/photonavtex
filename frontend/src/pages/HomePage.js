@@ -1,18 +1,16 @@
 import React from "react";
-import AutoRotatingCarouselComponent from "../components/AutoRotatingCarouselComponent";
-import UploadButtons from "../components/UploadButtons";
+import styled from "styled-components/macro";
 
 export default function HomePage() {
     return (
-        <>
-            <section style={{position: "relative"}}>
-                <h2>How to use PhotoNavTex?</h2>
-                <AutoRotatingCarouselComponent />
-            </section>
-            <section>
-                <h2>Upload of new warning´s image</h2>
-                <UploadButtons />
-            </section>
-        </>
+        <Wrapper style={{position: "relative"}} />
     );
 }
+
+const Wrapper = styled.div`
+    background-image: url("../../images/anchor_sailing_web.jpeg");
+    background-position: center;
+    background-size: 100% auto;
+    height: 80%;
+    background-repeat: no-repeat;
+`;

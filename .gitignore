@@ -1,5 +1,7 @@
 # intelliJ
 .idea
 *.iml
+
 # misc
 .DS-Store
+node_modules

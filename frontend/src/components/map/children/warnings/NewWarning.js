@@ -18,8 +18,8 @@ export default function NewWarning() {
         number: "21",
         type: "point", // point, polygon, circle, line, other
         title: "Warning Point",
-        distance: 14,
-        radius: 0,
+        distance: "14nm",
+        radius: false,
     });
 
     useEffect(() => {
@@ -36,8 +36,8 @@ export default function NewWarning() {
         number: "21",
         type: "point", // point, polygon, circle, line, other
         title: "Warning Point",
-        distance: 14,
-        radius: 0,
+        distance: "14nm",
+        radius: false,
     }]
 
     switch (warning.type) {

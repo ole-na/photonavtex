@@ -33,14 +33,31 @@ const CustomCheckbox = withStyles(checkBoxStyles)(Checkbox);
 
 export default function WarningCategorySetting(props) {
     const classes = useStyles()
-
-    const [state, setState] = useState(props.warningCategory);
+    const [category, setCategory] = useState(props.settings.category)
+    const [state, setState] = useState({
+        warningA: category.includes("A"),
+        warningD: category.includes("D")
+    });
 
     const { warningA, warningD } = state;
     const error = [warningA, warningD].filter((v) => v).length === 0;
 
     const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
+        const name = event.target.name
+        setState({ ...state, [name]: event.target.checked });
+
+        const catValue = (name === "warningA") ? "A" : "D"
+        let catArray = [...category]
+
+        if(event.target.checked) {
+            if(!catArray.includes(catValue))
+                catArray.push(catValue);
+        } else if (catArray.includes(catValue)) {
+            catArray = catArray.filter(item => item !== catValue)
+        }
+
+        setCategory([...catArray])
+        props.setSettings({...props.settings, category: catArray})
     };
 
     return (
@@ -49,11 +66,11 @@ export default function WarningCategorySetting(props) {
             <FormHelperText>Please select only one or both warning types</FormHelperText>
             <FormGroup>
                 <FormControlLabel
-                    control={<CustomCheckbox checked={warningA} onChange={handleChange} name="warningA" />}
+                    control={<CustomCheckbox checked={state.warningA} onChange={handleChange} name="warningA" />}
                     label="A: Nautical warnings"
                 />
                 <FormControlLabel
-                    control={<CustomCheckbox checked={warningD} onChange={handleChange} name="warningD" />}
+                    control={<CustomCheckbox checked={state.warningD} onChange={handleChange} name="warningD" />}
                     label="D: Search and rescue information and pirate warnings"
                 />
             </FormGroup>

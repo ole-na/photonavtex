@@ -1,11 +1,15 @@
 import React from "react";
+import WarningUpload from "../components/upload/WarningUpload";
 
 export default function UploadPage() {
     return (
-        <section>
-            <h2>Upload</h2>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-        </section>
+        <div className="page-content-container">
+            <h2>Warning Upload</h2>
+            <p>
+                Please select an image with warning text. The words "ZCZC" and "NNNN" should be on the begin and end of image.
+            </p>
+            <WarningUpload />
+        </div>
     );
 }
+

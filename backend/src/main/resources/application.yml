@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      database: photonavtex
+server:
+  error:
+    include-message: always

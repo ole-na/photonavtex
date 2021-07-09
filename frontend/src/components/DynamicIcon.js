@@ -9,7 +9,7 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 export default function DynamicIcon({type}) {
     switch (type) {
         case 'settings':
-            return <SettingsIcon color='primary' aria-hidden='true'/>;
+            return <SettingsIcon color="primary" aria-hidden="true"/>;
         case 'map':
             return <LocationOnIcon color="primary" aria-hidden="true"/>;
         case 'warnings':
