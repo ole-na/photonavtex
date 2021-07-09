@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -13,6 +13,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import RoutePoint from "./RoutePoint";
 import RouteHints from "./RouteHints";
 import * as routeServices from "./routeServices";
+import Loading from "../../Loading";
 
 const useStyles = makeStyles(() => ({
     formControl: {
@@ -32,30 +33,32 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-const pointsValues = []
-
 export default function RouteSetting(props) {
     const classes = useStyles()
 
+    const [isRouteLoading, setIsRouteLoading] = useState(false)
     const [route, setRoute] = useState(props.settings.route)
     const [errors, setErrors] = useState({
         start: false,
         end: false,
         points: []
     });
+    const [points, setPoints] = useState([])
 
-    // initial array hook with input name values for points (not start and end)
-    if(props.settings.route && props.settings.route.points) {
-        props.settings.route.points.map((index) => {
-            pointsValues[index] = index
+    useEffect(() => {
+        setIsRouteLoading(true);
+        // initial array hook with input name values for points (not start and end)
+        const pointsValues = []
+        props.settings.route?.points?.map((point, index) => {
+            pointsValues[index] = point
         })
-    }
-
-    const [points, setPoints] = useState(pointsValues)
+        setPoints(pointsValues)
+        setIsRouteLoading(false);
+    }, []);
 
     // set values of start and end to empty string and delete other points
     const handleReset = event => {
-        setRoute({start: "", end: "", points: []})
+        setRoute({start: [], end: [], points: []})
         setErrors({start: false, end: false, points: []})
         setPoints([])
         props.setSettings({...props.settings, route: []})
@@ -66,8 +69,12 @@ export default function RouteSetting(props) {
         let value = event.target.value
         let name = event.target.name;
         const errorValue = !routeServices.checkRoutePointValue(value)
-        setRoute({...route, [name]: value});
         setErrors({...errors, [name]: errorValue});
+
+        if(!errorValue) {
+            const valuesArray = value.split(', ')
+            setRoute({...route, [name]: valuesArray});
+        }
     }
 
     // handle changes on point fields: update hooks for route, errors and points
@@ -76,7 +83,7 @@ export default function RouteSetting(props) {
         const errorValue = (value === "" || !routeServices.checkRoutePointValue(value))
 
         const newRoutePoints = [...route.points]
-        newRoutePoints[index] = value
+        newRoutePoints[index] = value.split(", ")
         setRoute({...route, points: newRoutePoints});
 
         const newErrors = [...errors.points]
@@ -95,7 +102,7 @@ export default function RouteSetting(props) {
 
         // add new point to route.points
         const newRoutePoints = [...route.points]
-        newRoutePoints.push("")
+        newRoutePoints.push([""])
         setRoute({...route, points: newRoutePoints});
         props.setSettings({...props.settings, route: {...props.settings.route, points: newRoutePoints}})
 
@@ -132,7 +139,9 @@ export default function RouteSetting(props) {
         setPoints(newPoints)
     }
 
-    return (
+    return (<>
+        {isRouteLoading && <Loading isLoading={isRouteLoading}/>}
+        {!isRouteLoading &&
         <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend"><b>Route</b></FormLabel>
             <FormHelperText>Please define start and end points of your route at least</FormHelperText>
@@ -143,13 +152,15 @@ export default function RouteSetting(props) {
                                     id="startField"
                                     label="Start"
                                     required={true}
-                                    value={route.start.toString()}
+                                    value={route.start.join(', ')}
                                     error={errors.start}
                                     iconColor={green}
                                     settings={props.settings} setSettings={props.setSettings}
                                     onBlur={(event) => handleChangeOnBlur(event)}
                                     onChange={handleChange}
-                                    onClear={(event) => {routeServices.clearRoutePointValue(event, "startField")}}
+                                    onClear={(event) => {
+                                        routeServices.clearRoutePointValue(event, "startField")
+                                    }}
                         />
                     </Grid>
 
@@ -160,7 +171,7 @@ export default function RouteSetting(props) {
                                 <RoutePoint name={key}
                                             label="Point"
                                             required={false}
-                                            value={route.points[index].toString()}
+                                            value={route.points[index].join(', ')}
                                             error={errors.points[index]}
                                             iconColor={grey}
                                             onBlur={(event) => handleChangeOnBlur(event)}
@@ -176,22 +187,26 @@ export default function RouteSetting(props) {
                                     id="endField"
                                     label="End"
                                     required={true}
-                                    value={route.end.toString()}
+                                    value={route.end.join(', ')}
                                     error={errors.end}
                                     iconColor={red}
                                     onBlur={(event) => handleChangeOnBlur(event, props.settings)}
                                     onChange={handleChange}
-                                    onClear={(event) => {routeServices.clearRoutePointValue(event, "endField")}}
+                                    onClear={(event) => {
+                                        routeServices.clearRoutePointValue(event, "endField")
+                                    }}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Button variant="contained" color="secondary" type="reset"
-                                onClick={handleReset} startIcon={<ClearIcon />}>Reset</Button>
+                                onClick={handleReset} startIcon={<ClearIcon/>}>Reset</Button>
                         <Button variant="contained" color="secondary"
                                 className={classes.addButton}
-                                startIcon={<AddIcon />}
+                                startIcon={<AddIcon/>}
                                 id="addButton"
-                                onClick={(event) => {handleAddNewPoint(event)}}
+                                onClick={(event) => {
+                                    handleAddNewPoint(event)
+                                }}
                         >Add</Button>
                     </Grid>
 
@@ -200,5 +215,6 @@ export default function RouteSetting(props) {
                 </Grid>
             </FormGroup>
         </FormControl>
-    );
+        }
+    </>);
 }

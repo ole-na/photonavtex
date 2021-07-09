@@ -58,7 +58,6 @@ export default function SettingsPage() {
     }
 
     const saveSettingsIntoRepository = (settingsToSaved) => {
-        console.log("SETTINGS2: ", settingsToSaved)
         axios
             .post('/settings', settingsToSaved)
             .then((response) => response.data)
@@ -77,12 +76,12 @@ export default function SettingsPage() {
     }
 
     const prepareSettingsDataForPostRequest = () => {
-        const routeStartArray = changeRouteInputStringToCoordsArray(settings.route.start)
-        const routeEndArray = changeRouteInputStringToCoordsArray(settings.route.end)
+        const routeStartArray = settings.route.start
+        const routeEndArray = settings.route.end
         let routePointsArray = []
 
         settings.route.points?.map((point, index) => {
-            const pointCoords = changeRouteInputStringToCoordsArray(point)
+            const pointCoords = point
             routePointsArray.push(pointCoords)
         })
 
