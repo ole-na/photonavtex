@@ -86,7 +86,7 @@ export default function HeaderAppBar(props) {
             <ElevationScroll {...props}>
                 <AppBar position="fixed" className={classes.appBar}>
                     <Toolbar>
-                        <Link to="/home">
+                        <Link to="/">
                             <img src={logo} className="app-logo" alt="logo" />
                         </Link>
                         <IconButton
