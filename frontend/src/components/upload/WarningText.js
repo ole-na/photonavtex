@@ -101,6 +101,7 @@ export default function WarningText(props) {
             radius: radius,
             geoObject: geoObject.toString(),
             position: [...positionData],
+            distance: "",
         })
     }
 
