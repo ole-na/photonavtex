@@ -38,7 +38,6 @@ function convertDMSToDD(degrees, minutes, seconds, direction) {
 
 
 export const splitCoordsStringToParts = (stringValue) => {
-    // possible values: 51-55N, 003-40E, 003-40.55S, 45-34W, 009-43S
     const parts = stringValue.replace(",", ".").split(/[-]+/)
     const degree = Number(parts[0])
     const minutesSecondsDirection = parts[1]
@@ -54,7 +53,9 @@ export const splitCoordsStringToParts = (stringValue) => {
         minutes = Number(minutesSecondsDirection.replace(direction, ""))
         seconds = ""
     }
-    const convertDms2Decimal = convertDMSToDD(degree, minutes, seconds, direction);
+    const convertDms2Decimal = convertDMSToDD(degree, minutes, seconds, direction)
 
-    return convertDms2Decimal
+    const roundedString = convertDms2Decimal.toFixed(6)
+    const rounded = Number(roundedString)
+    return rounded
 }
