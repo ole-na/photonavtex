@@ -21,27 +21,37 @@ export default function WarningPopup(props) {
 
     const distanceToMe = (currentState && currentState.hasLocation && currentState.coords && currentState.coords.speed)
         ? (calculateDistance(
-            warning.coords.lat,
-            warning.coords.long,
+            warning.position[0],
+            warning.position[1],
             currentState.coords.latitude,
             currentState.coords.longitude
         ) + "nm") : "undefined";
-
-    const warningPosition = (warning.type === "point" ) ?
-        (warning.coords[0] + ", " + warning.coords[1]) : warning.coords
 
     return(
         <Popup>
             <h3>
                 {(props.state && props.state === "new") && <span>New</span>}
-                NavTex ({warning.number})
+                NavTex ({warning.title})
             </h3>
             <div className="overflow-wrap">
-                <p>Position: {warningPosition}</p>
+                <dl>
+                    <dt>Position:</dt>
+                    <dd>
+                        {warning.position && warning.position.length > 0 && warning.position.map((pair, index) => {
+                            const key = "warningPosition" + index;
+                            return (
+                                <span key={key}>
+                        {pair.toString()}<br/>
+                    </span>
+                            )
+                        })}
+                    </dd>
+                </dl>
             </div>
             <p>Text: {warning.text}</p>
-            <p>Type: {warning.type}</p>
+            <p>GeoObject: {warning.geoObject}</p>
             <p>Min. distance from route: {warning.distance}</p>
+            <p>Distance to me: {distanceToMe}</p>
             <p>Radius: {warning.radius}</p>
         </Popup>
     )
