@@ -1,5 +1,4 @@
 import '@testing-library/jest-dom';
-import {render} from '@testing-library/react'
 import convertMetersPerSecondToKnots from "../services/convertMetersPerSecondToKnots";
 
 test('should convert [m/s] to to knots(nautical miles per hour) [kn] if speed is provided ', () => {
