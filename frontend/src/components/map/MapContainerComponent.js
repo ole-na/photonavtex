@@ -27,6 +27,32 @@ export default function  MapContainerComponent() {
     const [mapSettingsHint, setMapSettingsHint] = useState(false)
     const [center, setCenter] = useState(mapOptions.center)
 
+    const [warnings, setWarnings] = useState([])
+
+    const getWarningsFromRepository = () => {
+        // props.setIsLoading(true);
+        axios
+            .get(`/warning` )
+            .then((response) => response.data)
+            .then((allWarnings) => {
+                if(!allWarnings) {
+                    // setMapWarningsHint(true)
+                    setWarnings([])
+                    setIsLoading(false);
+                    return
+                }
+                setWarnings(allWarnings)
+                console.log("Warningslist", allWarnings)
+            })
+            .catch((error) => {
+                console.error("Warnings", error.message)
+
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
+    }
+
     const getSettingsFromRepository = () => {
         setIsLoading(true);
         axios
@@ -46,7 +72,6 @@ export default function  MapContainerComponent() {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         const currentLatLong = [position.coords.latitude, position.coords.longitude]
                         setCenter(currentLatLong)
-                        setIsLoading(false);
                         setError(false);
                     }, function() {
                         setCenterToRouteStart(routeStartLatLong);
@@ -57,8 +82,10 @@ export default function  MapContainerComponent() {
             })
             .catch((error) => {
                 console.error(error.message)
-                setIsLoading(false);
                 setError(true);
+            })
+            .finally(() => {
+                getWarningsFromRepository()
             });
     }
 
@@ -67,8 +94,8 @@ export default function  MapContainerComponent() {
         if(routePosition.length == 2) {
             setCenter(routePosition)
         }
-        setIsLoading(false);
         setError(false);
+        setIsLoading(false);
     }
 
     useEffect(() => {
@@ -103,7 +130,7 @@ export default function  MapContainerComponent() {
                                 <NauticalRulerMeasureComponent />
                                 <NmScale />
 
-                                <WarningVectorLayers settings={settings} />
+                                <WarningVectorLayers settings={settings} warnings={warnings} />
                                 <RouteComponent settings={settings} />
                             </MapContainer>
                         </div>
