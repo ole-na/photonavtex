@@ -7,7 +7,6 @@ const { BaseLayer, Overlay } = LayersControl;
 export default function TileLayerComponent() {
     return (<>
         <LayersControl position="topleft">
-            <h3>Base Maps</h3>
             {mapConfig.baseMaps.map(tileLayer =>
                 tileLayer.display  &&
                 <BaseLayer key={tileLayer.name} checked={tileLayer.checked} name={tileLayer.name}>
@@ -19,7 +18,6 @@ export default function TileLayerComponent() {
 
             <Divider />
 
-            <h3>Overlays</h3>
             {mapConfig.overlayMaps.map(tileLayer =>
                 tileLayer.display &&
                 <Overlay key={tileLayer.name} checked={tileLayer.checked} name={tileLayer.name}>
