@@ -3,11 +3,12 @@ import {Polyline} from "react-leaflet";
 import WarningPopup from "./WarningPopup";
 
 export default function WarningLine(props) {
-    const warning = props.warning;
+    const warning = props.warning
+    const warningPosition = warning.position;
     const colorOptions = { color: 'red' };
 
-    return(warning.coords &&
-        <Polyline pathOptions={colorOptions} positions={warning.coords}>
+    return(warningPosition &&
+        <Polyline pathOptions={colorOptions} positions={warningPosition}>
             <WarningPopup warning={warning} state={props.state} />
         </Polyline>
     )
