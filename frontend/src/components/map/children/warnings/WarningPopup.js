@@ -34,25 +34,29 @@ export default function WarningPopup(props) {
                 NavTex ({warning.title})
             </h3>
             <div className="overflow-wrap">
-                <dl>
-                    <dt>Position:</dt>
-                    <dd>
-                        {warning.position && warning.position.length > 0 && warning.position.map((pair, index) => {
-                            const key = "warningPosition" + index;
-                            return (
-                                <span key={key}>
-                        {pair.toString()}<br/>
-                    </span>
-                            )
-                        })}
-                    </dd>
-                </dl>
+                <details>
+                    <summary>Position</summary>
+                    {warning.position && warning.position.length > 0 && warning.position.map((pair, index) => {
+                        const key = "warningPosition" + index;
+                        const pairs = pair[0] ? pair[0]+", "+pair[1] : pair
+                        return (
+                            <span key={key}>
+                                {pairs}<br/>
+                            </span>
+                        )
+                    })}
+                </details>
             </div>
-            <p>Text: {warning.text}</p>
+            <p>
+                <details>
+                    <summary>Text</summary>
+                    {warning.text}
+                </details>
+            </p>
             <p>GeoObject: {warning.geoObject}</p>
             <p>Min. distance from route: {warning.distance}</p>
             <p>Distance to me: {distanceToMe}</p>
-            <p>Radius: {warning.radius}</p>
+            <p>Radius: {warning.radius ? "yes" : "no"}</p>
         </Popup>
     )
 }
