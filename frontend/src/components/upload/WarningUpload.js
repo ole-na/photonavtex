@@ -190,7 +190,7 @@ export default function WarningPhotoUpload() {
     }
 
     function setInitialStates(){
-        setIsLoading(false);
+        setIsLoading(true);
         setStateImage({
             errors: null,
             images: null,
@@ -213,6 +213,7 @@ export default function WarningPhotoUpload() {
         })
 
         setDisabledSaveButton(false)
+        setIsLoading(false);
     }
 
 
