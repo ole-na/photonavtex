@@ -32,7 +32,7 @@ export const mapConfig = {
             name: "OpenSeaMap",
             display: true,
             checked: true,
-            urlTemplate: "&copy; <a href='https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png'",
+            urlTemplate: "https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
             attribution: "&copy; <a href='https://www.openseamap.org'>OpenSeaMap</a> contributors",
             opacity: "0.8"
         }
