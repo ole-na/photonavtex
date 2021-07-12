@@ -25,6 +25,33 @@ export default function  MapContainerComponent() {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(false)
     const [mapSettingsHint, setMapSettingsHint] = useState(false)
+    const [center, setCenter] = useState(mapOptions.center)
+
+    const [warnings, setWarnings] = useState([])
+
+    const getWarningsFromRepository = () => {
+        // props.setIsLoading(true);
+        axios
+            .get(`/warning` )
+            .then((response) => response.data)
+            .then((allWarnings) => {
+                if(!allWarnings) {
+                    // setMapWarningsHint(true)
+                    setWarnings([])
+                    setIsLoading(false);
+                    return
+                }
+                setWarnings(allWarnings)
+                console.log("Warningslist", allWarnings)
+            })
+            .catch((error) => {
+                console.error("Warnings", error.message)
+
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
+    }
 
     const getSettingsFromRepository = () => {
         setIsLoading(true);
@@ -38,14 +65,37 @@ export default function  MapContainerComponent() {
                     return
                 }
                 setSettings(settingsResponse)
-                setIsLoading(false);
-                setError(false);
+                const routeStartLatLong = settingsResponse.route.start
+
+                // locate map to current position if geolocation possible or to route start
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        const currentLatLong = [position.coords.latitude, position.coords.longitude]
+                        setCenter(currentLatLong)
+                        setError(false);
+                    }, function() {
+                        setCenterToRouteStart(routeStartLatLong);
+                    });
+                } else {
+                    setCenterToRouteStart(routeStartLatLong);
+                }
             })
             .catch((error) => {
                 console.error(error.message)
-                setIsLoading(false);
                 setError(true);
+            })
+            .finally(() => {
+                getWarningsFromRepository()
             });
+    }
+
+    function setCenterToRouteStart(routeStartLatLong) {
+        const routePosition = routeStartLatLong
+        if(routePosition.length == 2) {
+            setCenter(routePosition)
+        }
+        setError(false);
+        setIsLoading(false);
     }
 
     useEffect(() => {
@@ -64,7 +114,7 @@ export default function  MapContainerComponent() {
 
                     {settings &&
                         <div id="map">
-                            <MapContainer center={mapOptions.center}
+                            <MapContainer center={center}
                                           zoom={mapOptions.zoom}
                                           scrollWheelZoom={mapOptions.scrollWheelZoom}
                                           style={styles.targetDiv} fadeAnimation={true}
@@ -80,7 +130,7 @@ export default function  MapContainerComponent() {
                                 <NauticalRulerMeasureComponent />
                                 <NmScale />
 
-                                <WarningVectorLayers settings={settings} />
+                                <WarningVectorLayers settings={settings} warnings={warnings} />
                                 <RouteComponent settings={settings} />
                             </MapContainer>
                         </div>

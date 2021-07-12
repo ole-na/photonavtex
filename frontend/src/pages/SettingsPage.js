@@ -36,13 +36,14 @@ export default function SettingsPage() {
                     return
                 }
                 setSettings(settingsResponse)
-                setIsLoading(false);
                 setError(false);
             })
             .catch((error) => {
                 console.error(error.message)
-                setIsLoading(false);
                 setError(true);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }
 
@@ -64,14 +65,15 @@ export default function SettingsPage() {
             .then((newSettings) => {
                 const updatedSettings = {...settings, newSettings}
                 setSettings(updatedSettings)
-                setIsLoading(false);
                 setError(false);
                 setOpenSuccesDialog(true)
             })
             .catch((error) => {
                 console.error(error.message)
-                setIsLoading(false);
                 setError(true);
+            })
+            .finally(() => {
+                setIsLoading(false);
             })
     }
 

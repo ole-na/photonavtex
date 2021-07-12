@@ -13,10 +13,7 @@ export default function MapSidebarComponent(props) {
     const map = useMap();
     useEffect(() => {
         if (map) {
-            L.control.sidebar = function (id, options) {
-                return new L.Control.Sidebar(id, options);
-            };
-            const sidebar = L.control.sidebar('mapSidebar', {
+            const sidebar = new L.Control.Sidebar('mapSidebar', {
                 autopan: false, // whether to maintain the centered map point when opening the sidebar
                 closeButton: true,
                 container: 'mapSidebar',

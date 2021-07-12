@@ -50,18 +50,16 @@ export default function WarningError(props) {
 
                     <Divider />
 
-                    <h3>NavTex Data ({warning.category}{warning.number})</h3>
+                    <h3>NavTex Data ({warning.title})</h3>
                     <div className="overflow-wrap">
                         <p>
-                            Position: {warning.coords.map(item => item).reduce((acc, x) => acc === null ? x : <span>[{acc} , {x}]</span>, null)}
+                            Position: {warning.position.map(item => item).reduce((acc, x) => acc === null ? x : <span>[{acc} , {x}]</span>, null)}
                         </p>
                     </div>
                     <p>Text: {warning.text}</p>
-                    <p>Category: {warning.type}</p>
+                    <p>GeoObject: {warning.geoObject}</p>
                     <p>Min.distance from route: {warning.distance}</p>
-                    {warning.radius > 0 &&
-                        <p>Radius: {warning.radius}</p>
-                    }
+                    <p>Radius: {warning.radius}</p>
                 </DialogContentText>
             </DialogContent>
             <DialogActions>

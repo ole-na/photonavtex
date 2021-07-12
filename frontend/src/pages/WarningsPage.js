@@ -50,13 +50,14 @@ export default function WarningsPage() {
             .then((response) => {
                 const updatedWarnings = warnings.filter((warning) => warning.id !== warningId)
                 setWarnings(updatedWarnings)
-                setIsLoading(false);
                 setError(false);
             })
             .catch((error) => {
                 console.error(error.message)
-                setIsLoading(false);
                 setError(false);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }
 
@@ -67,13 +68,14 @@ export default function WarningsPage() {
             .then((response) => response.data)
             .then((allWarnings) => {
                 setWarnings(allWarnings)
-                setIsLoading(false);
                 setError(false);
             })
             .catch((error) => {
                 console.error(error.message)
-                setIsLoading(false);
                 setError(false);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     },[]);
 
