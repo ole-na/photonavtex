@@ -1,6 +1,6 @@
 # APP PhotoNavTex
 
-At the end of neufische intensive coding bootcamp (https://www.neuefische.de/en/weiterbildung/java/hamburg) I have implemented this app for nautical warning messages as digital journeyman project.
+At the end of neufische intensive coding bootcamp (https://www.neuefische.de/en/weiterbildung/java/hamburg) I have implemented this app for nautical warning messages as my graduation project.
 
 NAVTEX is  an international system for maritime safety information (MSI) which includes navigational warnings, weather forecasts and weather warnings, search and rescue notices and similar information to ships. PhotoNavTex helps to indicate two types of warnings: **A** (navigational warnings) and **D** (Search And Rescue information and pirate attack warnings). It displays the position of saved warnings on the OpenStreetMap as basis map and on OpenSeaMap as overlay.
 
