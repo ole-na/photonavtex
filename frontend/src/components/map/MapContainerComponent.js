@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import "leaflet/dist/leaflet.css";
 import {MapContainer} from 'react-leaflet';
 import {NmScale} from "@marfle/react-leaflet-nmscale";
@@ -15,6 +15,7 @@ import "../../css/customLeaflet.css";
 import axios from "axios";
 import Loading from "../Loading";
 import {Alert} from "@material-ui/lab";
+import TypeAndAuthContext from "../login/context/TypeAndAuthContext";
 
 export default function  MapContainerComponent() {
     const [map, setMap] = useState(null);
@@ -29,10 +30,17 @@ export default function  MapContainerComponent() {
 
     const [warnings, setWarnings] = useState([])
 
+    const {token} = useContext(TypeAndAuthContext);
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    };
+
     const getWarningsFromRepository = () => {
         // props.setIsLoading(true);
         axios
-            .get(`/warning` )
+            .get(`/api/warning`, config)
             .then((response) => response.data)
             .then((allWarnings) => {
                 if(!allWarnings) {
@@ -56,7 +64,7 @@ export default function  MapContainerComponent() {
     const getSettingsFromRepository = () => {
         setIsLoading(true);
         axios
-            .get(`/settings/olena` )
+            .get(`/api/settings`, config)
             .then((response) => response.data)
             .then((settingsResponse) => {
                 if(!settingsResponse) {

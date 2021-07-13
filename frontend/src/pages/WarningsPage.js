@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -11,6 +11,7 @@ import {Alert} from "@material-ui/lab";
 import Grid from "@material-ui/core/Grid";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import IconButton from "@material-ui/core/IconButton";
+import TypeAndAuthContext from "../components/login/context/TypeAndAuthContext";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,11 +43,18 @@ export default function WarningsPage() {
 
     const [warnings, setWarnings] = useState([])
 
+    const {token} = useContext(TypeAndAuthContext);
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    };
+
     const onDelete = (event, warningId) => {
         event.preventDefault()
         setIsLoading(true);
         axios
-            .delete(`/warning/`+ warningId)
+            .delete(`/api/warning/`+ warningId, token)
             .then((response) => {
                 const updatedWarnings = warnings.filter((warning) => warning.id !== warningId)
                 setWarnings(updatedWarnings)
@@ -64,7 +72,7 @@ export default function WarningsPage() {
     useEffect(() => {
         setIsLoading(true);
         axios
-            .get(`/warning` )
+            .get(`/api/warning`, token)
             .then((response) => response.data)
             .then((allWarnings) => {
                 setWarnings(allWarnings)
