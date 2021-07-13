@@ -30,6 +30,7 @@
     "classnames": "^2.2.6",
     "clsx": "^1.1.1",
     "font-awesome": "^4.7.0",
+    "jwt-decode": "^3.1.2",
     "leaflet": "^1.7.1",
     "leaflet-measure": "^3.1.0",
     "leaflet-sidebar-v2": "^3.2.3",
@@ -55,7 +56,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier --write ."
   },
   "eslintConfig": {
     "extends": [

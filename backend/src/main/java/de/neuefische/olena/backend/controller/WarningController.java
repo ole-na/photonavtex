@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/warning")
+@RequestMapping("/api/warning")
 public class WarningController {
 
     private final WarningService warningService;

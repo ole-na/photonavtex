@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import ImageUploading from "react-images-uploading";
 import Tesseract from "tesseract.js";
 import Button from "@material-ui/core/Button";
@@ -14,6 +14,7 @@ import axios from "axios";
 import Loading from "../Loading";
 import {splitCoordsStringToParts} from "./manipulateText";
 import SuccessDialog from "../settings/SuccessDialog";
+import TypeAndAuthContext from "../login/context/TypeAndAuthContext";
 
 const useStyles = makeStyles((theme) => ({
     buttons: {
@@ -49,6 +50,13 @@ const maxNumber = 1;
 export default function WarningPhotoUpload() {
     const classes = useStyles();
     const textRef = useRef(null);
+
+    const {token} = useContext(TypeAndAuthContext);
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    };
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -110,7 +118,7 @@ export default function WarningPhotoUpload() {
         const finalData = {...savedWarningData, position: [...decimalPosition]}
         setIsLoading(true)
          axios
-            .post("/warning", finalData)
+            .post("/api/warning", finalData, config)
             .then((response) => {
                 setWarningData(response.data)
                 setDbError(false)
@@ -171,7 +179,7 @@ export default function WarningPhotoUpload() {
     const getSavedCategory = () => {
         setIsLoading(true)
         axios
-            .get(`/settings/olena`)
+            .get(`/api/settings`, config)
             .then((response) => response.data)
             .then((settingsResponse) => {
                 if(!settingsResponse) {

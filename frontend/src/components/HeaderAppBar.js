@@ -110,6 +110,7 @@ export default function HeaderAppBar(props) {
                     <HeaderMenuItem type="map" text="Map" />
                     <HeaderMenuItem type="warnings" text="My Warnings" />
                     <HeaderMenuItem type="upload" text="Upload" />
+                    <HeaderMenuItem type="login" text="Login" />
                 </MenuList>
                 <Divider />
                 <section>

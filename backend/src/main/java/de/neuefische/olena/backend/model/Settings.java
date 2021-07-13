@@ -14,7 +14,7 @@ import java.util.List;
 @Document (collection = "settings")
 public class Settings {
     @Id
-    private String id;
+    private String username;
     private List<Category> category = Arrays.asList(Category.A, Category.D);
     private Integer distance = 15;
     private Route route;

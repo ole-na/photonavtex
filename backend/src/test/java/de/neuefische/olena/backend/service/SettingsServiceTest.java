@@ -5,6 +5,7 @@ import de.neuefische.olena.backend.model.Route;
 import de.neuefische.olena.backend.model.Settings;
 
 import de.neuefische.olena.backend.repository.SettingsRepository;
+import de.neuefische.olena.backend.security.repository.AppUserRepository;
 import de.neuefische.olena.backend.utils.IdUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,8 @@ import static org.mockito.Mockito.*;
 class SettingsServiceTest {
     private final SettingsRepository testRepository = mock(SettingsRepository.class);
     private final IdUtils idUtils = mock(IdUtils.class);
-    private final SettingsService testService = new SettingsService(testRepository, idUtils);
+    private final AppUserRepository appUserRepository = mock(AppUserRepository.class);
+    private final SettingsService testService = new SettingsService(testRepository, idUtils, appUserRepository);
 
     private List<Category> categories = Arrays.asList(Category.A, Category.D);
 
@@ -46,11 +48,11 @@ class SettingsServiceTest {
     @DisplayName ("Get all settings from repository")
     void getSettings() {
         // GIVEN
-        Settings savedSettings = new Settings("olena", categories, distance1, route1);
+        Settings savedSettings = new Settings("testuser", categories, distance1, route1);
         when(testRepository.findById("testId")).thenReturn(Optional.of(savedSettings));
 
         // WHEN
-        Settings settings = testService.getSettings("testId");
+        Settings settings = testService.getSettings("testuser");
 
         // THEN
         assertThat(settings, is(savedSettings));
@@ -59,21 +61,22 @@ class SettingsServiceTest {
     @Test
     void saveSettings() {
         // GIVEN
-        Settings savedSettings = new Settings("olena", categories, distance1, route1);
+        Settings savedSettings = new Settings("testuser", categories, distance1, route1);
         when(testRepository.save(savedSettings)).thenReturn(Settings.builder()
-                .id("olena")
+                .username("olena")
                 .category(categories)
                 .distance(distance1)
                 .route(route1)
                 .build());
         Settings updatedSettings = Settings.builder()
+                .username("olena")
                 .category(categories)
                 .distance(distance1)
                 .route(route1)
                 .build();
 
         // WHEN
-        Settings settings = testService.saveSettings(updatedSettings);
+        Settings settings = testService.saveSettings("olena", updatedSettings);
 
         // THEN
         verify(testRepository).save(savedSettings);

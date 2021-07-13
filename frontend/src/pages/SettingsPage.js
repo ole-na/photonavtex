@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import SettingsForm from "../components/settings/SettingsForm";
 import Loading from "../components/Loading";
 import {Alert} from "@material-ui/lab";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import SuccessDialog from "../components/settings/SuccessDialog";
+import TypeAndAuthContext from "../components/login/context/TypeAndAuthContext";
 
 export default function SettingsPage() {
-    let {id} = useParams();
+    let {username} = useParams();
 
     const defaultSettings = {
         id: "",
@@ -19,15 +20,25 @@ export default function SettingsPage() {
             points: [],
         }
     }
-    const [settings, setSettings] = useState(defaultSettings)
+
+    const { SETTINGS } = useContext(TypeAndAuthContext);
+    // const [settings, setSettings] = useState(defaultSettings)
+    const [settings, setSettings] = useState(SETTINGS)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(false)
     const [openSuccessDialog, setOpenSuccesDialog] = useState(false);
 
+    const {token} = useContext(TypeAndAuthContext);
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    };
+
     const getSettingsFromRepositoryOrUseDefaultSettings = () => {
         setIsLoading(true);
         axios
-            .get(`/settings/olena` )
+            .get(`/api/settings`, config)
             .then((response) => response.data)
             .then((settingsResponse) => {
                 if(!settingsResponse) {
@@ -60,7 +71,7 @@ export default function SettingsPage() {
 
     const saveSettingsIntoRepository = (settingsToSaved) => {
         axios
-            .post('/settings', settingsToSaved)
+            .post('/api/settings', settingsToSaved, config)
             .then((response) => response.data)
             .then((newSettings) => {
                 const updatedSettings = {...settings, newSettings}

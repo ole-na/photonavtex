@@ -17,6 +17,10 @@ import Footer from "./components/Footer";
 import AboutPage from "./pages/AboutPage";
 import MapPage from "./pages/MapPage";
 import UploadPage from "./pages/UploadPage";
+import LoginPage from "./pages/LoginPage";
+import TypeAndAuthProvider from "./components/login/context/TypeAndAuthProvider";
+import SignupPage from "./pages/SignupPage";
+import PrivateRoute from "./routing/PrivateRoute";
 
 const theme = createMuiTheme({
     palette: {
@@ -36,39 +40,47 @@ function App() {
   return (
     <div className="app">
         <Router>
-            <MaterialThemeProvider theme={theme}>
+            <TypeAndAuthProvider>
+                <MaterialThemeProvider theme={theme}>
 
-                <HeaderAppBar />
+                    <HeaderAppBar />
 
-                <Container className="app-content-container">
-                    <Switch>
-                        <Route path={"/about"} exact>
-                            <AboutPage />
-                        </Route>
-                        <Route path={"/help"} exact>
-                            <HelpPage/>
-                        </Route>
-                        <Route path={"/map"} exact>
-                            <MapPage />
-                        </Route>
-                        <Route path={"/upload"} exact>
-                            <UploadPage />
-                        </Route>
-                        <Route path={"/settings"}>
-                            <SettingsPage/>
-                        </Route>
-                        <Route path={"/warnings"} exact>
-                            <WarningsPage />
-                        </Route>
-                        <Route path={"/"}>
-                            <HomePage/>
-                        </Route>
-                    </Switch>
-                </Container>
+                    <Container className="app-content-container">
+                        <Switch>
+                            <Route path={"/login"} exact>
+                                <LoginPage />
+                            </Route>
+                            <Route path={"/signup"} exact>
+                                <SignupPage />
+                            </Route>
+                            <Route path={"/about"} exact>
+                                <AboutPage />
+                            </Route>
+                            <Route path={"/help"} exact>
+                                <HelpPage/>
+                            </Route>
+                            <PrivateRoute path={"/map"} exact>
+                                <MapPage />
+                            </PrivateRoute>
+                            <PrivateRoute path={"/upload"} exact>
+                                <UploadPage />
+                            </PrivateRoute>
+                            <PrivateRoute path={"/settings"}>
+                                <SettingsPage/>
+                            </PrivateRoute>
+                            <PrivateRoute path={"/warnings"} exact>
+                                <WarningsPage />
+                            </PrivateRoute>
+                            <Route path={["/home", "/"]}>
+                                <HomePage/>
+                            </Route>
+                        </Switch>
+                    </Container>
 
-                <Footer/>
+                    <Footer/>
 
-            </MaterialThemeProvider>
+                </MaterialThemeProvider>
+            </TypeAndAuthProvider>
         </Router>
     </div>
   );
