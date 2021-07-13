@@ -1,14 +1,14 @@
 # APP PhotoNavTex
 
-At the end of neufische intensive coding bootcamp (https://www.neuefische.de/en/weiterbildung/java/hamburg) I have implemented this app for nautical warning messages.
+At the end of neufische intensive coding bootcamp (https://www.neuefische.de/en/weiterbildung/java/hamburg) I have implemented this app for nautical warning messages as digital journeyman project.
 
-NAVTEX is  an international system for maritime safety information (MSI) which includes navigational warnings, weather forecasts and weather warnings, search and rescue notices and similar information to ships. PhotoNavTex helps to indicate two types of these warnings: **A** (navigational warnings) and **D** (Search And Rescue information and pirate attack warnings). Therefore it displays the position of saved warnings on the OpenStreetMap as basis map and on OpenSeaMap as overlay.
+NAVTEX is  an international system for maritime safety information (MSI) which includes navigational warnings, weather forecasts and weather warnings, search and rescue notices and similar information to ships. PhotoNavTex helps to indicate two types of warnings: **A** (navigational warnings) and **D** (Search And Rescue information and pirate attack warnings). It displays the position of saved warnings on the OpenStreetMap as basis map and on OpenSeaMap as overlay.
 
 ## NAVTEX 
 
 ### NAVTEX messages 
 
-The messages are coded with a header code identified by the using single letters of the alphabet to represent broadcasting stations, type of messages, and followed by two figures indicating the serial number of the message. 
+The messages are coded with a letter representing the broadcasting station, the type of message and then followed by two signs which indicate the messages serial number.
 
 For example: **FA56** where 
 - **F** is the ID of the transmitting station, 
