@@ -133,6 +133,15 @@ body::backdrop {
 .margin-bottom-m {
     margin-bottom: 1em;
 }
+
+.margin-bottom-l {
+    margin-bottom: 1.5em;
+}
+
+.margin-bottom-xl {
+    margin-bottom: 2em;
+}
+
 .margin-top-xl {
     margin-top: 2.5em;
 }
