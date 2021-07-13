@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import L from "leaflet";
+import React from "react";
 import WarningPoint from "./WarningPoint";
 import WarningPolygon from "./WarningPolygon";
 import WarningError from "./WarningError";
