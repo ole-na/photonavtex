@@ -18,7 +18,6 @@ import {CssBaseline} from "@material-ui/core";
 import logo from '../logo.svg';
 import { makeStyles} from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
-import CancelIcon from "@material-ui/icons/Cancel";
 
 const useStyles = makeStyles(theme => ({
     appBar: {

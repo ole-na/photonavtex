@@ -1,13 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import clsx from 'clsx';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {Alert} from "@material-ui/lab";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -72,8 +65,6 @@ export default function WarningText(props) {
         const warningCategory = words[0].substr(1,1).toString().toUpperCase()
         checkWarningCategory(warningCategory);
 
-        // const dmsToLonLatRegex= /[-]{0,1}[\d.]*[\d]|([NSEW])+/g;
-        // const position = text.match(/\d+-\d+((\.\d+)?)(N|S) \d+-\d+((\.\d+)?)(E|W)/g)
         const position = text.match(/\d+-\d+(((\.|,)\d+)?)(N|S) \d+-\d+(((\.|,)\d+)?)(E|W)/g)
         const positionData = []
         if(position && position.length > 0) {
