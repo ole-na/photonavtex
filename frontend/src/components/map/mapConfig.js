@@ -1,6 +1,6 @@
 export const mapConfig = {
     options: {
-        center: [54.261, 11.474],
+        center: [51.546, 2.36],
         zoom: 13,
         maxZoom: 18,
         scrollWheelZoom: true,

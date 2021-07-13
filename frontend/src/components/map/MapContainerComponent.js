@@ -62,20 +62,7 @@ export default function  MapContainerComponent() {
                     return
                 }
                 setSettings(settingsResponse)
-                const routeStartLatLong = settingsResponse.route.start
-
-                // locate map to current position if geolocation possible or to route start
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        const currentLatLong = [position.coords.latitude, position.coords.longitude]
-                        setCenter(currentLatLong)
-                        setError(false);
-                    }, function() {
-                        setCenterToRouteStart(routeStartLatLong);
-                    });
-                } else {
-                    setCenterToRouteStart(routeStartLatLong);
-                }
+                setMapCenter(settingsResponse.route.start)
             })
             .catch((error) => {
                 console.error(error.message)
@@ -84,6 +71,21 @@ export default function  MapContainerComponent() {
             .finally(() => {
                 getWarningsFromRepository()
             });
+    }
+
+    function setMapCenter(routeStartLatLong) {
+        // locate map to current position if geolocation possible or to route start
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const currentLatLong = [position.coords.latitude, position.coords.longitude]
+                setCenter(currentLatLong)
+                setError(false);
+            }, function() {
+                setCenterToRouteStart(routeStartLatLong);
+            });
+        } else {
+            setCenterToRouteStart(routeStartLatLong);
+        }
     }
 
     function setCenterToRouteStart(routeStartLatLong) {
