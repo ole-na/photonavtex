@@ -30,19 +30,16 @@ export default function  MapContainerComponent() {
     const [warnings, setWarnings] = useState([])
 
     const getWarningsFromRepository = () => {
-        // props.setIsLoading(true);
         axios
             .get(`/warning` )
             .then((response) => response.data)
             .then((allWarnings) => {
                 if(!allWarnings) {
-                    // setMapWarningsHint(true)
                     setWarnings([])
                     setIsLoading(false);
                     return
                 }
                 setWarnings(allWarnings)
-                console.log("Warningslist", allWarnings)
             })
             .catch((error) => {
                 console.error("Warnings", error.message)

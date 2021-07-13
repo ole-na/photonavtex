@@ -2,13 +2,6 @@ import React, {useEffect, useState} from "react";
 import {Polyline} from "react-leaflet";
 import Loading from "../../Loading";
 
-// Dummy data for route testing, now not used
-const dummyRouteCoords = [
-    [54.083, 11.070],
-    [54.291, 12.045],
-    [54.455, 12.358],
-];
-
 const colorOptions = { color: 'lime', weight: 5 };
 
 export default function RouteComponent(props) {

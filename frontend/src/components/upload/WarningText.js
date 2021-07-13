@@ -72,8 +72,6 @@ export default function WarningText(props) {
         const warningCategory = words[0].substr(1,1).toString().toUpperCase()
         checkWarningCategory(warningCategory);
 
-        // const dmsToLonLatRegex= /[-]{0,1}[\d.]*[\d]|([NSEW])+/g;
-        // const position = text.match(/\d+-\d+((\.\d+)?)(N|S) \d+-\d+((\.\d+)?)(E|W)/g)
         const position = text.match(/\d+-\d+(((\.|,)\d+)?)(N|S) \d+-\d+(((\.|,)\d+)?)(E|W)/g)
         const positionData = []
         if(position && position.length > 0) {
