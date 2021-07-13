@@ -1,20 +1,21 @@
 # APP PhotoNavTex
-App for nautical warning messages
+
+At the end of neufische intensive coding bootcamp (https://www.neuefische.de/en/weiterbildung/java/hamburg) I have implemented this app for nautical warning messages.
+
+NAVTEX is  an international system for maritime safety information (MSI) which includes navigational warnings, weather forecasts and weather warnings, search and rescue notices and similar information to ships. PhotoNavTex helps to indicate two types of these warnings: **A** (navigational warnings) and **D** (Search And Rescue information and pirate attack warnings). Therefore it displays the position of saved warnings on the OpenStreetMap as basis map and on OpenSeaMap as overlay.
 
 ## NAVTEX 
 
-NAVTEX is an international, automated system for instantly distributing maritime safety information (MSI) which includes navigational warnings, weather forecasts and weather warnings, search and rescue notices and similar information to ships.
+### NAVTEX messages 
 
 The messages are coded with a header code identified by the using single letters of the alphabet to represent broadcasting stations, type of messages, and followed by two figures indicating the serial number of the message. 
 
 For example: **FA56** where 
 - **F** is the ID of the transmitting station, 
 - **A** indicates the message category navigational warning, 
-- **56** is the consecutive message number.
+- **56** is the consecutive message number. 
 
-### NAVTEX messages 
-
-are printed (and/or displayed) by the NAVTEX receiver in the exactly defined transmission format:
+The messages are printed (and/or displayed) by the NAVTEX receiver in the exactly defined transmission format:
 
 ```
 ZCZC B1B2B3B4
@@ -67,11 +68,23 @@ INFORMING JRCC PIRAEUS
 NNNN
 ```
 
+## Technologies:
 
-**A**: Navigational warnings (cannot be rejected by the receiver)
-**D**: SAR (Search And Rescue) information and pirate attack warnings (cannot be rejected by the receiver)
+Java, Spring, MongoDB, Maven, Lombock, JUnit, JavaScript, React, HTML, CSS, Material UI, Leaflet, React-Leaflet, OpenStreetMap, OpenSeaMap, Tesseract
 
-Infos:
+## Plugins with MIT licence:
+
+- Nautical mile scale for React-Leaflet (https://github.com/Marfle/react-leaflet-nmscale)
+- Material AutoRotatingCarousel (https://www.npmjs.com/package/material-auto-rotating-carousel)
+- Leaflet-Ruler (https://github.com/gokertanrisever/leaflet-ruler)
+- Leaflet.Locate (https://github.com/domoritz/leaflet-locatecontrol)
+- Responsive sidebar for Leaflet (https://github.com/noerw/leaflet-sidebar-v2)
+- React Images Uploading (https://www.npmjs.com/package/react-images-uploading)
+- React Spinners (https://www.npmjs.com/package/react-spinners)
+- Tesseract.js (https://tesseract.projectnaptha.com/)
+
+## Information about NAVTEX:
+
 - https://www.egmdss.com/gmdss-courses/mod/page/view.php?id=84
 - https://www.skipperguide.de/wiki/NAVTEX
 - https://en.wikipedia.org/wiki/NAVTEX
